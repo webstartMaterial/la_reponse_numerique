@@ -2,6 +2,7 @@ $primary: #fc4364;
 $secondary: #718AFD;
 
 $colorGreyLight: rgba(185, 185, 192, 0.5);
+$darkGrey : #101829;
 
 @import "~bootstrap/scss/bootstrap";
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
@@ -96,12 +97,6 @@ ul {
     height: 60px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.4);
     box-shadow: 0 6px 20px rgb(32 39 45 / 15%);
-
-    ul {
-        list-style-type: none;
-        padding: 0;
-        margin: 0;
-    }
     
 
 }
@@ -271,12 +266,12 @@ input[type=search] {
 }   
 
 .text-less-grey {
-    color : rgba(255, 255, 255, 0.9);
+    color : rgba(255, 255, 255, 0.9) !important;
 }
 
 .text-grey {
     // font-weight: bold;
-    color : rgba(255, 255, 255, 0.6);
+    color : rgba(255, 255, 255, 0.6) !important;
 }
 
 .body-grey {
@@ -568,9 +563,9 @@ footer {
         display: none;
     }
 
-    .logo-smartphone {
-        display: none !important;
-    }
+    // .logo-smartphone {
+    //     display: none !important;
+    // }
 
     .bg-secondary.progression {
         display: none !important;
@@ -588,7 +583,7 @@ footer {
     }
 
     .side-bar {
-        z-index: 9999;
+        z-index: 9999999;
         height: 100%;
         width: 350px;
         position: fixed;
@@ -615,24 +610,50 @@ footer {
 
 }
 
-.nav-item a {
-    color: $secondary;
+// .nav-item a {
+//     color: $secondary;
+// }
+
+.form-shadow {
+    -webkit-box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.6); 
+    box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.6);
+    background: rgba(255, 255, 255, 0.05);
 }
 
+.smallBorderRadius {
+    border-radius: 1rem;
+}
 
-// 
-// 
-// NAVBAR SMARTPHONE 
-//
-// 
+.form-circle {
+    height: 80px;
+    width: 80px;
+    position: absolute;
+    border-radius: 50%;
+    top: -50px;
+    -webkit-box-shadow: 0px 0px 15px 0px rgba(94, 36, 195, 0.1); 
+    box-shadow: 0px 0px 15px 0px rgba(94, 36, 195, 0.1);
+    background: url('../img/logo_without_background.png') no-repeat, white;
+    background-size: 100%;
+    border: 5px solid $secondary;
+}
 
-.nav-bar-smarphone {
+.relative {
+    position: relative;
+}
 
-    .loupe {
-        left: 0;
-    }
+.form-control, .form-select {
+    background-color: transparent;
+    color: rgba(255, 255, 255, 0.6);
+}
 
-    input[type=search] {
-        padding-left: 0;
-    }
+.buttonBorderRadius {
+    border-radius: 30px !important;
+}
+
+.navbar {
+    position: sticky;
+    top: 0;
+    background: $darkGrey;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 9999;
 }

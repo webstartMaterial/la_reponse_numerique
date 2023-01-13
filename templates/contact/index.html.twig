@@ -2,19 +2,55 @@
 
 {% block title %}Hello ContactController!{% endblock %}
 
+{% form_theme contactForm 'bootstrap_5_layout.html.twig' %}
+
+
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    
+    <div class="row">
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+        {% include 'nav.html.twig' %}
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/Users/samihhabbani/la_rubrique_numerique/src/Controller/ContactController.php'|file_link(0) }}">src/Controller/ContactController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/Users/samihhabbani/la_rubrique_numerique/templates/contact/index.html.twig'|file_link(0) }}">templates/contact/index.html.twig</a></code></li>
-    </ul>
+        {# <div class="d-flex align-items-center header body-grey">
+            <div class="h-100 w-100 d-flex align-items-center justify-content-end"> 
+
+                <nav class="d-flex align-items-center">
+                    <ul class="d-flex align-items-center">
+                        <li class="px-2"><a class="text-less-grey fw-bold" href="https://academiews.fr/categories">Nos formations vidéos</a></li>
+                        <li class="px-2"><a class="text-less-grey fw-bold" href="{{ path('who_we_are') }}">Qui sommes-nous?</a></li>
+                        <li class="px-2"><a class="text-less-grey fw-bold" href="{{ path('contact') }}">Contact</a></li>
+                        <li class="px-2">
+                            <i class="loupe fa-solid fa-magnifying-glass"></i>
+                            <input type="search" placeholder="Rechercher un article" />
+                        </li>
+                </nav>
+            </div>
+        </div> #}
+
+    <div class="d-flex my-5">
+        <div class="form-shadow relative row col-10 col-sm-10 col-md-6 mx-auto justify-content-center align-items-centerwhite smallBorderRadius p-0 my-5">
+            <div class="form-circle"> </div>
+            {{ form_start(contactForm, {"attr": {"class": "col-md-12 row px-5 py-5 justify-content-center" } }) }}
+                <div class="col-md-12">
+                    <h1 class="text-less-grey h3 mb-3 font-weight-normal text-center">Contactez-nous</h1>
+                </div>
+                {{ form_row(contactForm.firstname) }}
+                {{ form_row(contactForm.lastname) }}
+                {{ form_row(contactForm.email) }}
+                {{ form_row(contactForm.phone) }}
+                {{ form_row(contactForm.object) }}
+                {{ form_row(contactForm.message) }}
+
+                <div class="d-flex justify-content-center">
+                    <button type="submit" class="text-less-grey btn btn-secondary mt-4 col-md-6 buttonBorderRadius">Envoyer</button>
+                </div>
+            {{ form_end(contactForm) }}
+
+            </div>
+        </div>
+    </div>
 </div>
+
+        {% include 'footer.html.twig' %}
+
 {% endblock %}

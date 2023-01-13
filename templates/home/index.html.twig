@@ -6,7 +6,7 @@
 
 <div class="row p-0">
 
-    <nav class="nav-bar-smarphone navbar navbar-expand-lg bg-body-tertiary">
+    {# <nav class="nav-bar-smarphone navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
             
             <div class="logo-smartphone d-flex flex-column align-items-start logo pt-3">
@@ -34,7 +34,7 @@
             </ul>
             </div>
         </div>
-    </nav>
+    </nav> #}
 
     <div class="col-12 bg-secondary progression"> </div>
 
@@ -84,7 +84,7 @@
 
     </div>
 
-    <div class="d-flex align-items-center header body-grey">
+    {# <div class="d-flex align-items-center header body-grey">
         <div class="h-100 w-100 d-flex align-items-center justify-content-end"> 
             <nav class="d-flex align-items-center">
                 <ul class="d-flex align-items-center">
@@ -97,7 +97,10 @@
                     </li>
             </nav>
         </div>
-    </div>
+    </div> #}
+
+    {% include 'nav.html.twig' %}
+
 
     <div class="row mx-auto content">
 
