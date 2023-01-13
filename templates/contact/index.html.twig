@@ -11,6 +11,16 @@
 
         {% include 'nav.html.twig' %}
 
+        {% for label, messages in app.flashes(['secondary', 'warning']) %}
+            {% for message in messages %}
+                <div class="col-md-6 mx-auto mt-5">
+                    <div class="alert alert-{{ label }}" role="alert">
+                        {{ message }}
+                    </div>
+                </div>
+            {% endfor %}
+        {% endfor %}
+
         {# <div class="d-flex align-items-center header body-grey">
             <div class="h-100 w-100 d-flex align-items-center justify-content-end"> 
 

@@ -48,8 +48,8 @@ class ContactController extends AbstractController
 
             $mailer->send($email);
 
-            $this->addFlash('success', 'Votre message à bien été envoyé.');
-            return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);
+            $this->addFlash('secondary', 'Votre message à bien été envoyé.');
+            return $this->redirectToRoute('contact', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('contact/index.html.twig', [
