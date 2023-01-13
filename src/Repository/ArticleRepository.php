@@ -39,6 +39,30 @@ class ArticleRepository extends ServiceEntityRepository
         }
     }
 
+    public function findByCategory($idCategory) {
+
+        $qb = $this->createQueryBuilder('a')
+            ->where('a.category = :idCategory')
+            ->setParameter('idCategory', $idCategory);
+
+        $query = $qb->getQuery();
+
+        return $query->getResult();
+    }
+
+    public function findRelatedArticles($idCategory, $idArticle) {
+
+        $qb = $this->createQueryBuilder('a')
+            ->where('a.category = :idCategory')
+            ->andWhere('a.id != :idArticle')
+            ->setParameters(['idArticle' => $idArticle , 'idCategory' => $idCategory ])
+            ->setMaxResults(3);
+
+        $query = $qb->getQuery();
+
+        return $query->getResult();
+    }
+
 //    /**
 //     * @return Article[] Returns an array of Article objects
 //     */

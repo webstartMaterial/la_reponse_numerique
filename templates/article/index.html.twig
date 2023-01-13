@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block meta_description %} {{ article.chapo }} {% endblock %}
+{% block title %} {{ article.title }} {% endblock %}
 
 {% block body %}
 
@@ -35,52 +36,27 @@
 
         <div class="row col-8 mx-auto justify-content-center flex-column align-items-center">
 
-            <h1 class="text-center mb-5 text-less-grey"> Carte Vitale numérique : lancement, fonctionnement, avantages, sécurité…</h1>
+            <h1 class="text-center mb-5 text-less-grey"> {{ article.title }} </h1>
 
-            <p class="text-center mb-5 text-grey"> Après une phase de test concluante dans 8 départements, la carte Vitale dématérialisée arrive pour tous en 2023. </p>
+            <p class="text-center mb-5 text-grey"> {{article.chapo}} </p>
             
             <div class="d-flex justify-content-center">
                 <a href="" class="btn bg-blue-logo text-white mb-5 text-grey">PARTAGER L'ARTICLE</a>
             </div>
         
             <div class="d-flex justify-content-center author text-grey mb-5">
-                <span class="byline">Appoline Reisacher </span>&nbsp;-&nbsp;<span class="posted-on"> Publié le 
-                <time class="entry-date published updated" datetime="2023-01-10T11:16:57+01:00"> 10 janvier 2023 à 11h16</time></span>
+                <span class="byline">{{article.author}} </span>&nbsp;-&nbsp;<span class="posted-on"> Publié le 
+                <time class="entry-date published updated" datetime="2023-01-10T11:16:57+01:00"> {{ article.date |date("m/d/Y") }}</time></span>
             </div>
 
             <div class="d-flex flex-column">
                 <img width="100%" src="{{ asset('article-1.jpg') }}" >
-                <p class="pt-2 text-grey legend"> L'e-carte Vitale est une alternative à la carte physique, mais elle n'est pas obligatoire. © Améli </p>
+                <p class="pt-2 text-grey legend"> {{ article.legendMainPicture }} © Académie WS - <a class="text-secondary" href="https://academiews.fr"> academiews.fr </a> </p>
             </div>
 
             <div class="article-content my-5">
 
-                <h2> Comment fonctionne la carte Vitale numérique ? </h2>
-
-                <p> L’objectif de la carte Vitale dématérialisée est de « fluidifier les relations entre professionnels de santé et assurés » . Et pour cela, le gouvernement propose une application dédiée à télécharger sur votre smartphone, nommée ApCV. </p>
-
-                <ul>
-                    <li> Lecture d’un QR code présent dans l’application </li>
-                    <li> Lecture d’un QR code présent dans l’application </li>
-                </ul>
-
-                <h2> Comment fonctionne la carte Vitale numérique ? </h2>
-
-                <p> L’objectif de la carte Vitale dématérialisée est de « fluidifier les relations entre professionnels de santé et assurés » . Et pour cela, le gouvernement propose une application dédiée à télécharger sur votre smartphone, nommée ApCV. </p>
-
-                <ul>
-                    <li> Lecture d’un QR code présent dans l’application </li>
-                    <li> Lecture d’un QR code présent dans l’application </li>
-                </ul>
-
-                <h2> Comment fonctionne la carte Vitale numérique ? </h2>
-
-                <p> L’objectif de la carte Vitale dématérialisée est de « fluidifier les relations entre professionnels de santé et assurés » . Et pour cela, le gouvernement propose une application dédiée à télécharger sur votre smartphone, nommée ApCV. </p>
-
-                <ul>
-                    <li> Lecture d’un QR code présent dans l’application </li>
-                    <li> Lecture d’un QR code présent dans l’application </li>
-                </ul>
+                {{ article.description|raw }}
 
             </div>
             
@@ -93,17 +69,16 @@
                 <span class="text-less-grey fw-bold">Sujets liés :</span>
 
                 <ul class="d-flex ms-2">
+
+                {% for relatedSubject in article.relatedSubjects %}
                     <div class="d-flex">
                         <li> 
-                            <a href=""> Données personnelles </a>
+                            <a href="{{ path('articles_by_subjects', {subject:relatedSubject}) }}"> Données personnelles </a>
                         </li> 
                         <span class="text-less-grey px-2"> / <span>
                     </div>
-                    <div class="d-flex">
-                        <li> 
-                            <a href=""> Données personnelles </a>
-                        </li>
-                    </div>
+                {% endfor %}
+
                 </ul>
             </div>
 
@@ -124,78 +99,34 @@
                 <h2 class="my-5 text-less-grey"> Consultez des articles similaires </h2>
 
                 <div class="row list-related-articles">
-                
-                    {# un article #}
-                    <div class="col-sm-12 col-md-4 p-2">
-                        <div class="col-md-12 d-flex flex-column article p-4 align-items-start">
 
-                            <div class="d-flex align-items-start">
+                    {% for relatedArticle in relatedArticles %}
 
-                                <img width="150px" src="{{ asset('article-1.jpg') }}" >
+                        {# un article #}
+                        <div class="col-sm-12 col-md-4 p-2">
+                            <div class="col-md-12 d-flex flex-column article p-4 align-items-start">
 
-                                <div class="d-flex flex-column">
-                                    <p class="text-less-grey ps-2 my-0"> Toto </p>
-                                    <p class="text-grey ps-2 my-0"> Recrutement </p>
+                                <div class="d-flex align-items-start">
+
+                                    <img width="150px" src="{{ asset('' ~ relatedArticle.picture)}}" >
+
+                                    <div class="d-flex flex-column">
+                                        <p class="text-less-grey ps-2 my-0"> {{ relatedArticle.category.name }} </p>
+                                        <p class="text-grey ps-2 my-0"> {{ relatedArticle.author }} </p>
+                                    </div>
+
                                 </div>
 
-                            </div>
+                                <p class="text-grey my-4">
+                                    {{ article.chapo[:150] ~ '...'  }}
+                                </p>
 
-                            <p class="text-grey my-4">
-                                Un CRM français et collaboratif pour gérer vos relations clients...
-                            </p>
-
-                            <a href="" class="py-3 btn btn-outline-secondary text-white text-grey">Accéder à l'article</a>
-
-                        </div>
-                    </div>
-
-                    {# un article #}
-                    <div class="col-sm-12 col-md-4 p-2">
-                        <div class="col-md-12 d-flex flex-column article p-4 align-items-start">
-
-                            <div class="d-flex align-items-start">
-
-                                <img width="150px" src="{{ asset('article-1.jpg') }}" >
-
-                                <div class="d-flex flex-column">
-                                    <p class="text-less-grey ps-2 my-0"> Toto </p>
-                                    <p class="text-grey ps-2 my-0"> Recrutement </p>
-                                </div>
+                                <a href="" class="py-3 btn btn-outline-secondary text-white text-grey">Accéder à l'article</a>
 
                             </div>
-
-                            <p class="text-grey my-4">
-                                Un CRM français et collaboratif pour gérer vos relations clients...
-                            </p>
-
-                            <a href="" class="py-3 btn btn-outline-secondary text-white text-grey">Accéder à l'article</a>
-
                         </div>
-                    </div>
 
-                    {# un article #}
-                    <div class="col-sm-12 col-md-4 p-2">
-                        <div class="col-md-12 d-flex flex-column article p-4 align-items-start">
-
-                            <div class="d-flex align-items-start">
-
-                                <img width="150px" src="{{ asset('article-1.jpg') }}" >
-
-                                <div class="d-flex flex-column">
-                                    <p class="text-less-grey ps-2 my-0"> Toto </p>
-                                    <p class="text-grey ps-2 my-0"> Recrutement </p>
-                                </div>
-
-                            </div>
-
-                            <p class="text-grey my-4">
-                                Un CRM français et collaboratif pour gérer vos relations clients...
-                            </p>
-
-                            <a href="" class="py-3 btn btn-outline-secondary text-white text-grey">Accéder à l'article</a>
-
-                        </div>
-                    </div>
+                    {% endfor %}
 
                 </div>
                 

@@ -1,6 +1,8 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block meta_description %} La réponse numérique - blog officiel de l'Académie WS spécialisé en formations vidéo dans l'univers du digital  ! {% endblock %}
+
+{% block title %}Blog officiel de l'Académie WS {{ parent() }} {% endblock %}
 
 {% block body %}
 
@@ -51,37 +53,29 @@
                 <img src="{{ asset('samih_habbani.JPG')}}" class="owner-img" width="200%" title="Académie WS" alt="Académie WS">
             </div>
 
-            <h3 class="mt-3 p-2 owner-name"> Samih <br> Habbani <br> <span class="text-secondary"> www.academiews.fr </span> </h3>
+            <h3 class="mt-3 p-2 owner-name"> Samih <br> Habbani <br> <span class="text-secondary"> <a class="text-secondary" href="http://www.academiews.fr">www.academiews.fr</a> </span> </h3>
 
         </div>
         
-
         <div class="d-flex w-100 mt-5">   
-
             <ul class="w-100 list-items">
-                <li class="px-5 py-4 text-primary fw-bold"> Programmation </li>
-                <li class="px-5 py-4 text-primary fw-bold"> Systèmes et réseaux </li>
-                <li class="px-5 py-4 text-primary fw-bold"> Marketing Digital </li>
-                <li class="px-5 py-4 text-primary fw-bold"> High Tech </li>
-                <li class="px-5 py-4 text-primary fw-bold"> Community Management </li>
-                <li class="px-5 py-4 text-primary fw-bold"> Web Design </li>
-                <li class="px-5 py-4 text-primary fw-bold"> Production Vidéo </li>
+
+                {% for category in listCategories %}
+                    <li class="cursor-pointer px-5 py-4 text-primary fw-bold"> 
+                        <a href="{{ path('articles', {id: category.id}) }}"> {{ category.name }} </a>
+                    </li>
+                {% endfor %}
 
                 <li class="d-flex justify-content-between px-5 py-4 text-primary fw-bold"> 
-
                     <i style="color:#C13584;" class="fa-brands fa-instagram"></i>
                     <i style="color:#3b5998;" class="fa-brands fa-facebook"></i>
                     <i style="color:#000000;" class="fa-brands fa-tiktok"></i>
                     <i style="color:#FF0000;" class="fa-brands fa-youtube"></i>
                     <i style="color:#1DA1F2;" class="fa-brands fa-twitter"></i>
                     <i style="color:#1DA1F2;" class="fa-brands fa-linkedin"></i>
-
                 </li>
             </ul>
-
         </div>
-
-
     </div>
 
     {# <div class="d-flex align-items-center header body-grey">
@@ -108,75 +102,32 @@
 
             <h1 class="mb-5 text-less-grey"> Nos derniers articles </h1>
 
-            <a href="{{ path('article', {id: 1}) }}">
-                <article class="col-md-10 d-flex mt-5">
+            {% for article in listArticles %}
+                <a href="{{ path('article', {id: 1}) }}">
+                    <article class="col-md-10 d-flex mt-5">
 
-                    <div class="col-md-3 picture">
-                        <img src="{{ asset('article-1.jpg')}}" width="100%" >
-                    </div>
+                        <div class="col-md-3 picture">
+                            <img src="{{ asset('article-1.jpg')}}" width="100%" >
+                        </div>
 
-                    <div class="col-md-9 chapo">
-                        <p class=""> <span class="fw-bold"> Bureautique </span> - 12 Janvier 2023</p>
-                        <a href="{{ path('article', {id: 1}) }}"> <h4> Comment gérer une crise sur les réseaux sociaux ? </h4></a>
-                        <p class="text-grey"> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book... </p>
-                        <span class="share-separator"></span>
-                        <span class="share-article text-grey"> Partager l'article : </span>
-                        <ul>
-                            <i style="color:#1DA1F2;" class="fa-brands fa-twitter"></i>
-                            <i style="color:#1DA1F2;" class="px-2 fa-brands fa-linkedin"></i>
-                            <i style="color:#3b5998;" class="fa-brands fa-facebook"></i>
-                        </ul>
-                    </div>
-                </article>
-            </a>
-
-            <div class="separator mt-5" style="height:2px; background:rgba(255,255,255, 0.05)"> </div>
-
-            <a href="{{ path('article', {id: 1}) }}">
-                <article class="col-md-10 d-flex mt-5">
-
-                    <div class="col-md-3 picture">
-                        <img src="{{ asset('article-1.jpg')}}" width="100%" >
-                    </div>
-
-                    <div class="col-md-9 chapo">
-                        <p class=""> <span class="fw-bold"> Bureautique </span> - 12 Janvier 2023</p>
-                        <a href="{{ path('article', {id: 1}) }}"> <h4> Comment gérer une crise sur les réseaux sociaux ? </h4></a>
-                        <p class="text-grey"> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book... </p>
-                        <span class="share-separator"></span>
-                        <span class="share-article text-grey"> Partager l'article : </span>
-                        <ul>
-                            <i style="color:#1DA1F2;" class="fa-brands fa-twitter"></i>
-                            <i style="color:#1DA1F2;" class="px-2 fa-brands fa-linkedin"></i>
-                            <i style="color:#3b5998;" class="fa-brands fa-facebook"></i>
-                        </ul>
-                    </div>
-                </article>
-            </a>
+                        <div class="col-md-9 chapo">
+                            <p class=""> <span class="fw-bold"> {{ article.category.name }} </span> - {{ article.date |date("m/d/Y") }}</p>
+                            <a href="{{ path('article', {id: article.id}) }}"> <h4> {{ article.title }} </h4></a>
+                            <p class="text-grey"> {{ article.chapo[:250] ~ '...'  }} </p>
+                            <span class="share-separator"></span>
+                            <span class="share-article text-grey"> Partager l'article : </span>
+                            <ul>
+                                <i style="color:#1DA1F2;" class="fa-brands fa-twitter"></i>
+                                <i style="color:#1DA1F2;" class="px-2 fa-brands fa-linkedin"></i>
+                                <i style="color:#3b5998;" class="fa-brands fa-facebook"></i>
+                            </ul>
+                        </div>
+                    </article>
+                </a>
+            {% endfor %}
 
             <div class="separator mt-5" style="height:2px; background:rgba(255,255,255, 0.05)"> </div>
 
-            <a href="{{ path('article', {id: 1}) }}">
-                <article class="col-md-10 d-flex mt-5">
-
-                    <div class="col-md-3 picture">
-                        <img src="{{ asset('article-1.jpg')}}" width="100%" >
-                    </div>
-
-                    <div class="col-md-9 chapo">
-                        <p class=""> <span class="fw-bold"> Bureautique </span> - 12 Janvier 2023</p>
-                        <a href="{{ path('article', {id: 1}) }}"> <h4> Comment gérer une crise sur les réseaux sociaux ? </h4></a>
-                        <p class="text-grey"> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book... </p>
-                        <span class="share-separator"></span>
-                        <span class="share-article text-grey"> Partager l'article : </span>
-                        <ul>
-                            <i style="color:#1DA1F2;" class="fa-brands fa-twitter"></i>
-                            <i style="color:#1DA1F2;" class="px-2 fa-brands fa-linkedin"></i>
-                            <i style="color:#3b5998;" class="fa-brands fa-facebook"></i>
-                        </ul>
-                    </div>
-                </article>
-            </a>
 
         </div>
 

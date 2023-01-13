@@ -167,6 +167,7 @@ input[type=search] {
             color: $colorGreyLight;
         }
 
+
     }
 
     article {
@@ -199,6 +200,14 @@ input[type=search] {
                 color: rgba(185, 185, 192, 0.8);
             }
         }
+    }
+
+}
+
+article {
+
+    img {
+        border-radius: 0.3rem;
     }
 
 }
@@ -474,6 +483,10 @@ footer {
     background: rgba(185, 185, 192, 0.5)
 }
 
+.cursor-pointer {
+    cursor: pointer;
+}
+
 
 ///
 /// 
@@ -542,9 +555,13 @@ body {
     article {
         flex-direction: column;
 
-    .chapo {
-        margin-left: 0 !important;
-    }
+        .chapo {
+            margin-left: 0 !important;
+        }
+
+        .picture {
+            margin-bottom: 1rem;
+        }
 
     }
 

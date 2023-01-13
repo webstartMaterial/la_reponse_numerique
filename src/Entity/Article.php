@@ -39,6 +39,12 @@ class Article
     #[ORM\JoinColumn(nullable: false)]
     private ?Category $category = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $chapo = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $legendMainPicture = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -136,6 +142,30 @@ class Article
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    public function getChapo(): ?string
+    {
+        return $this->chapo;
+    }
+
+    public function setChapo(string $chapo): self
+    {
+        $this->chapo = $chapo;
+
+        return $this;
+    }
+
+    public function getLegendMainPicture(): ?string
+    {
+        return $this->legendMainPicture;
+    }
+
+    public function setLegendMainPicture(string $legendMainPicture): self
+    {
+        $this->legendMainPicture = $legendMainPicture;
 
         return $this;
     }

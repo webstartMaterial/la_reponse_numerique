@@ -1,6 +1,8 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ArticlesController!{% endblock %}
+{% block meta_description %} Découvrez nos articles en {{ categorySelected.name }} et développez vos connaissances sans bla-bla ! {% endblock %}
+
+{% block title %} {{ categorySelected.name }} : nos derniers articles {{parent()}}  {% endblock %}
 
 {% block body %}
 
@@ -36,34 +38,36 @@
 
         <div class="pt-5 col-8 mx-auto">
 
-            <h1 class="text-center mb-5 text-less-grey"> WEB </h1>
+            <h1 class="text-center mb-5 text-less-grey"> {{ categorySelected.name }} </h1>
 
-            <h2 class="text-center text-grey fst-italic"> L’actualité du web, des GAFAM aux startups. Des études pour décrypter les usages et des interviews pour comprendre les tendances.</h2>
+            <h2 class="text-center text-grey fst-italic"> {{ categorySelected.description }}</h2>
 
-            <article class="col-md-10 d-flex mt-5">
+            {% for article in listArticles %}
+                <article class="col-md-10 d-flex mt-5">
 
-                <div class="col-md-3 picture">
-                    <img src="{{ asset('article-1.jpg')}}" width="100%" >
+                    <div class="col-md-3 picture">
+                        <img src="{{ asset('article-1.jpg')}}" width="100%" >
+                    </div>
+
+                    <div class="col-md-9 chapo">
+                        <p class="text-grey"> <span class="fw-bold"> {{ article.category.name }} </span> - {{ article.date |date("m/d/Y") }}</p>
+                        <a href="{{ path('article', {id: article.id}) }}"> <h4> {{ article.title }} </h4></a>
+                        <p class="text-grey"> {{ article.chapo }} </p>
+                        <span class="share-separator"></span>
+                        <span class="share-article text-grey fst-italic very-small-font"> Partager l'article : </span>
+                        <ul>
+                            <i style="color:#1DA1F2;" class="fa-brands fa-twitter"></i>
+                            <i style="color:#1DA1F2;" class="px-2 fa-brands fa-linkedin"></i>
+                            <i style="color:#3b5998;" class="fa-brands fa-facebook"></i>
+                        </ul>
+                    </div>
+                </article>
+
+                <div class="separator mt-5" style="height:2px; background:rgba(255,255,255, 0.05)">
+
                 </div>
 
-                <div class="col-md-9 chapo">
-                    <p class="text-grey"> <span class="fw-bold"> Bureautique </span> - 12 Janvier 2023</p>
-                    <a href="{{ path('article', {id: 1}) }}"> <h4> Comment gérer une crise sur les réseaux sociaux ? </h4></a>
-                    <p class="text-grey"> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book... </p>
-                    <span class="share-separator"></span>
-                    <span class="share-article text-grey fst-italic very-small-font"> Partager l'article : </span>
-                    <ul>
-                        <i style="color:#1DA1F2;" class="fa-brands fa-twitter"></i>
-                        <i style="color:#1DA1F2;" class="px-2 fa-brands fa-linkedin"></i>
-                        <i style="color:#3b5998;" class="fa-brands fa-facebook"></i>
-                    </ul>
-                </div>
-            </article>
-
-            <div class="separator mt-5" style="height:2px; background:rgba(255,255,255, 0.05)">
-
-            </div>
-
+            {% endfor %}
         </div>
 
         {% include 'footer.html.twig' %}
