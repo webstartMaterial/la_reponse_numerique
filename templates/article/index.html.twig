@@ -121,7 +121,7 @@
                                     {{ article.chapo[:150] ~ '...'  }}
                                 </p>
 
-                                <a href="" class="py-3 btn btn-outline-secondary text-white text-grey">Accéder à l'article</a>
+                                <a href="{{ path('article', {id:relatedArticle.id}) }}" class="py-3 btn btn-outline-secondary text-white text-grey">Accéder à l'article</a>
 
                             </div>
                         </div>
