@@ -63,11 +63,17 @@
                     </div>
                 </article>
 
-                <div class="separator mt-5" style="height:2px; background:rgba(255,255,255, 0.05)">
-
+                {% if loop.last == false %}
+                    <div class="separator mt-5" style="height:2px; background:rgba(255,255,255, 0.05)">
+                {% endif %}
                 </div>
 
             {% endfor %}
+
+            <div class="py-5 col-md-8 mx-auto navigation">
+                {{ knp_pagination_render(listArticles) }}
+            </div>  
+
         </div>
 
         {% include 'footer.html.twig' %}
