@@ -46,7 +46,7 @@
                 <article class="col-md-10 d-flex mt-5">
 
                     <div class="col-md-3 picture">
-                        <img src="{{ asset('article-1.jpg')}}" width="100%" >
+                        <img alt="{{ article.title }}" title="{{ article.title }}" src="{{ asset('' ~ article.picture)}}" width="100%" >
                     </div>
 
                     <div class="col-md-9 chapo">

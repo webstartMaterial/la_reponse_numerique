@@ -7,6 +7,10 @@ $darkGrey : #101829;
 @import "~bootstrap/scss/bootstrap";
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
 
+* {
+    font-family: 'Nunito', sans-serif;
+}
+
 .row > * {
     padding: 0;
 }

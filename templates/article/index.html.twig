@@ -50,7 +50,7 @@
             </div>
 
             <div class="d-flex flex-column">
-                <img width="100%" src="{{ asset('article-1.jpg') }}" >
+                <img title="{{ article.title }}" alt="{{ article.title }}" width="100%" src="{{ asset('' ~ article.picture)}}" >
                 <p class="pt-2 text-grey legend"> {{ article.legendMainPicture }} © Académie WS - <a class="text-secondary" href="https://academiews.fr"> academiews.fr </a> </p>
             </div>
 
@@ -73,7 +73,7 @@
                 {% for relatedSubject in article.relatedSubjects %}
                     <div class="d-flex">
                         <li> 
-                            <a href="{{ path('articles_by_subjects', {subject:relatedSubject}) }}"> Données personnelles </a>
+                            <a href="{{ path('articles_by_subjects', {subject:relatedSubject}) }}"> {{relatedSubject}} </a>
                         </li> 
                         <span class="text-less-grey px-2"> / <span>
                     </div>
@@ -108,7 +108,7 @@
 
                                 <div class="d-flex align-items-start">
 
-                                    <img width="150px" src="{{ asset('' ~ relatedArticle.picture)}}" >
+                                    <img title="{{ article.title }}" alt="{{ article.title }}" width="150px" src="{{ asset('' ~ article.picture)}}" >
 
                                     <div class="d-flex flex-column">
                                         <p class="text-less-grey ps-2 my-0"> {{ relatedArticle.category.name }} </p>
@@ -163,7 +163,7 @@
             </div>
 
             <div class="d-flex col-md-4 align-items-end illustration-part">
-                <img class="w-100" src="{{ asset('newsletter.png') }}">
+                <img alt="Abonnez-vous à la newsletter de la réponse numérique" title="Newsletter de la réponse numérique" class="w-100" src="{{ asset('newsletter.png') }}">
             </div>
 
         </div>

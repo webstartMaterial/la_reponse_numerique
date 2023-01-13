@@ -8,36 +8,6 @@
 
 <div class="row p-0">
 
-    {# <nav class="nav-bar-smarphone navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-            
-            <div class="logo-smartphone d-flex flex-column align-items-start logo pt-3">
-                <img src="{{ asset('logo.png')}}" width="auto" height="40px" title="Académie WS" alt="Académie WS">
-                <p class="logo-headline text-less-grey m-0 p-0"> Blog officiel </p>
-            </div>
-
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon">
-                <i class="text-secondary fas fa-bars" style="font-size:28px;"></i>
-                </span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Features</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Pricing</a>
-                </li>
-                <li class="nav-item">
-                <i class="loupe fa-solid fa-magnifying-glass"></i>
-                    <input type="search" placeholder="Rechercher un article" />
-                </li>
-            </ul>
-            </div>
-        </div>
-    </nav> #}
-
     <div class="col-12 bg-secondary progression"> </div>
 
     <div class="d-flex flex-column align-items-center side-bar px-3 pb-3">
@@ -50,7 +20,7 @@
         <div class="d-flex align-items-center mt-5">
 
             <div class="owner relative">
-                <img src="{{ asset('samih_habbani.JPG')}}" class="owner-img" width="200%" title="Académie WS" alt="Académie WS">
+                <img src="{{ asset('samih_habbani.jpg')}}" class="owner-img" width="200%" title="Académie WS - Samih Habbani" alt="Académie WS - Samih Habbani">
             </div>
 
             <h3 class="mt-3 p-2 owner-name"> Samih <br> Habbani <br> <span class="text-secondary"> <a class="text-secondary" href="http://www.academiews.fr">www.academiews.fr</a> </span> </h3>
@@ -107,7 +77,7 @@
                     <article class="col-md-10 d-flex mt-5">
 
                         <div class="col-md-3 picture">
-                            <img src="{{ asset('article-1.jpg')}}" width="100%" >
+                            <img alt="{{ article.title }}" title="{{ article.title }}" src="{{ asset('' ~ article.picture)}}" width="100%" >
                         </div>
 
                         <div class="col-md-9 chapo">
