@@ -1,11 +1,37 @@
+//
+// COLOR VARIABLES
+//
+
 $primary: #fc4364;
 $secondary: #718AFD;
 
 $colorGreyLight: rgba(185, 185, 192, 0.5);
 $darkGrey : #101829;
+$textGrey : rgba(255, 255, 255, 0.6);
+$textLessGrey :rgba(255, 255, 255, 0.9);
+
+$opacityGrey :rgba(255, 255, 255, 0.05); 
 
 @import "~bootstrap/scss/bootstrap";
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
+
+//
+//
+// SIZE VARIABLES
+//
+//
+
+$bigSize : 3.25rem;
+$midSize : 1.875rem;
+$pghSize : 1.375rem;
+$regularSize : 1.125rem;
+$smallSize : 0.8rem;
+
+//
+//
+// GLOBAL CSS
+//
+//
 
 * {
     font-family: 'Nunito', sans-serif;
@@ -25,6 +51,48 @@ ul {
     padding: 0;
 }
 
+//
+//
+// COMMON CSS
+//
+//
+
+input[type=search]::placeholder { 
+    font-style: italic;
+    font-size: 14px;
+    color: $textGrey;
+}
+  
+input[type=search]:-ms-input-placeholder { 
+    font-style: italic;
+    color: $textGrey;
+}
+  
+input[type=search]::-ms-input-placeholder { 
+    font-style: italic;
+    color: $textGrey;
+}
+
+input[type=search]::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+    color: $textGrey;
+}
+
+article {
+
+    img {
+        border-radius: 0.3rem;
+    }
+
+}
+
+
+///
+///
+/// SIDE BAR
+///
+/// 
 .side-bar {
 
     .logo {
@@ -32,15 +100,10 @@ ul {
     }
 
     ul {
-        list-style-type: none;
-        padding: 0;
-        margin: 0;
-
 
         li {
 
             border-top: 1px solid #d7dadb;
-            cursor: pointer;
 
         }
 
@@ -64,7 +127,6 @@ ul {
         overflow: hidden;
         position: relative;
 
-
         .owner-img {
             position: absolute;
             top: -77px;
@@ -74,13 +136,12 @@ ul {
     }
 
     .owner-name {
-        color: #101829;
-        font-style: italic;
+        color: $darkGrey;
         font-weight: 300;
-        font-size: 1.4rem;
+        font-size: $pghSize;
 
         span {
-            font-size: 0.8rem;
+            font-size: $smallSize;
         }
 
     }
@@ -88,7 +149,7 @@ ul {
 
 .logo-headline {
     font-family: 'Dancing Script', cursive;
-    font-size: 1.3rem;
+    font-size: $pghSize;
     position: relative;
     top: -15px;
     left: 53px;
@@ -99,39 +160,14 @@ ul {
     top: 0;
     padding-left: 350px;
     height: 60px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-    box-shadow: 0 6px 20px rgb(32 39 45 / 15%);
-    
-
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);    
 }
 
-//
-//
-// Placeholder input type search
-//
-//
-
-input[type=search]::placeholder { 
-    font-style: italic;
-    font-size: 14px;
-    color: rgba(255, 255, 255, 0.6);
-}
-  
-input[type=search]:-ms-input-placeholder { 
-    font-style: italic;
-    color: rgba(255, 255, 255, 0.6);
-}
-  
-input[type=search]::-ms-input-placeholder { 
-    font-style: italic;
-    color: rgba(255, 255, 255, 0.6);
-}
-
-input[type=search]::-moz-focus-inner {
-    border: 0;
-    padding: 0;
-    color: rgba(255, 255, 255, 0.6);
-}
+///
+/// 
+/// HEADER
+/// 
+/// 
 
 .loupe {
     width: 20px;
@@ -151,10 +187,15 @@ input[type=search] {
     appearance: none;
     -moz-appearance: none;
     -webkit-appearance: none;
-    border: 0;
-    box-shadow: 0 6px 20px rgb(32 39 45 / 15%);
-    
+    border: 0; 
+    color: $textGrey;   
 }
+
+///
+/// 
+///  MAIN CONTENT HOME PAGE
+/// 
+/// 
 
 .content {
 
@@ -164,27 +205,13 @@ input[type=search] {
         overflow: hidden;
         width: 276px;
         height: 144px;
-        box-shadow: 0 6px 20px rgb(32 39 45 / 2%);
         border-radius: 5px;
-
-        p {
-            color: $colorGreyLight;
-        }
-
-
     }
 
     article {
 
-        cursor: pointer;
-
-        p {
-            color: rgba(185, 185, 192, 1);
-        }
-
         .share-article {
-            font-size: 10px;
-            font-style: italic;
+            font-size: $smallSize;
         }
 
         .share-separator {
@@ -193,28 +220,15 @@ input[type=search] {
             height: 1px;
             background-color: $colorGreyLight;
         }
-
-        ul {
-
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-
-            i {
-                color: rgba(185, 185, 192, 0.8);
-            }
-        }
     }
 
 }
 
-article {
-
-    img {
-        border-radius: 0.3rem;
-    }
-
-}
+//
+//
+// HEADER ARTICLE
+//
+//
 
 #header-article {
 
@@ -226,7 +240,7 @@ article {
         height: 60px;
 
         .fa-house {
-            color: rgba(255, 255, 255, 0.6);
+            color: $textGrey;
         }
 
     }
@@ -254,58 +268,63 @@ article {
     background-color: $primary;
 }
 
-.underline {
-    text-decoration: underline;
-}
+//
+//
+// ARTICLE PAGE
+//
+//
 
 #article {
 
     h1 {
-        font-size: 3.25rem;
+        font-size: $bigSize;
     }
 
     p {
-        font-size: 1.875rem;
+        font-size: $pghSize;
     }
 
     .author {
-        font-size: 1.125rem;
+        font-size: $pghSize;
     }
 
     .legend {
-        font-size: 1.125rem;
+        font-size: $pghSize;
     }
 
 }   
 
+//
+//
+// COLORS
+//
+//
+
 .text-less-grey {
-    color : rgba(255, 255, 255, 0.9) !important;
+    color : $textLessGrey !important;
 }
 
 .text-grey {
     // font-weight: bold;
-    color : rgba(255, 255, 255, 0.6) !important;
+    color : $textGrey !important;
 }
 
-.body-grey {
-    background-color: #101829;
-}
-
-.bg-blue-logo {
-    background-color: #718af7;
+.bg-darkGrey {
+    background-color: $darkGrey;
 }
 
 .article-content h2 {
-    color : rgba(255, 255, 255, 0.9);
+    color : $textLessGrey;
     margin-bottom: 3rem;
     margin-top: 3rem;
+    font-weight: bold;
 }
 
 .article-content h2::before {
     content:"";
     width: 5px;
     height: 50px;
-    background-color: #718af7;
+    background-color: $secondary;
     position: absolute;
     margin-top: -5px;
     margin-left: -20px;
@@ -313,9 +332,9 @@ article {
 }
 
 .article-content p  {
-    color : rgba(255, 255, 255, 0.6);
+    color : $textGrey;
     padding-left:300px;
-    font-size: 1.875rem;
+    font-size: $midSize;
     margin-top: 2rem;
     margin-bottom: 2rem;
 }
@@ -326,72 +345,71 @@ article {
 }
 
 .article-content ul li {
-    color : rgba(255, 255, 255, 0.6);
-    font-size: 1.875rem;
+    color : $textGrey;
+    font-size: $pghSize;
 }
 
 .article-content ul li::before {
     content: "•"; 
-    color: #718af7;
+    color: $secondary;
 }
 
 .related-subjects {
-    background-color: rgba(255, 255, 255, 0.05);
+    background-color: $opacityGrey;
 }
 
 .related-subjects span, .related-subjects li {
-    font-size: 1.875rem;
-}
-
-.related-subjects li a {
-    color: #718af7 !important;
+    font-size: $midSize;
 }
 
 #other-articles {
 
 
     .article {
-        background-color: rgba(255, 255, 255, 0.05);
-        box-shadow: 0 6px 20px rgb(32 39 45 / 15%);
+        background-color: $opacityGrey;
         border-radius: 10px;
-
     }
 
     p {
-        font-size: 1.375rem;;
+        font-size: $regularSize;
     }
-
-
 
 }
 
+//
+//
+// NEWSLETTER
+//
+//
+
 
 #newsletter {
-    background-color: rgba(255, 255, 255, 0.05);
+
+    background-color: $opacityGrey;
     
     input[type=text] {
         border-radius: 5px;
-        background-color: #101829;
+        background-color: $darkGrey;
         border: none;
     }
 
     input[type=text]::placeholder { 
-        color : rgba(255, 255, 255, 0.6);
+        color : $textGrey;
         font-style: italic;
     }
       
     input[type=text]:-ms-input-placeholder { 
-        color : rgba(255, 255, 255, 0.6);
+        color : $textGrey;
         font-style: italic;
     }
       
     input[type=text]::-ms-input-placeholder { 
-        color : rgba(255, 255, 255, 0.6);
+        color : $textGrey;
         font-style: italic;
     }
 
     input[type=text]::-moz-focus-inner {
-        color : rgba(255, 255, 255, 0.6);
+        color : $textGrey;
         font-style: italic;
     }
 
@@ -405,12 +423,11 @@ article {
     }
 
     p {
-        font-size: 0.8rem;
-        font-style: italic;
+        font-size: $smallSize;
     }
 
     label {
-        font-size: 1.125rem;
+        font-size: $regularSize;
     }
 
     [type="radio"]:checked,
@@ -475,16 +492,20 @@ footer {
 
 
 // COMMON CLASES
+.underline {
+    text-decoration: underline;
+}
+
 .small-font {
-    font-size: 0.8rem;
+    font-size: $smallSize;
 }
 
 .very-small-font {
-    font-size: 0.7rem;
+    font-size: $smallSize;
 }
 
 .fil-ariane {
-    background: rgba(185, 185, 192, 0.5)
+    background: $colorGreyLight;
 }
 
 .cursor-pointer {
@@ -620,7 +641,6 @@ body {
         width: 350px;
         position: fixed;
         background-color: #f7f7f7;
-        box-shadow: 0 6px 20px rgb(32 39 45 / 15%);
         border-right: 1px solid #d7dadb;
     }
 
@@ -646,10 +666,16 @@ body {
 //     color: $secondary;
 // }
 
-.form-shadow {
+.form-shadow-black {
     -webkit-box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.6); 
     box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.6);
-    background: rgba(255, 255, 255, 0.05);
+    background: $opacityGrey;
+}
+
+.form-shadow-white {
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(255, 255, 255, 0.05); 
+    box-shadow: 0px 0px 5px 0px rgba(255, 255, 255, 0.05);
+    background: $opacityGrey;
 }
 
 .smallBorderRadius {
@@ -675,7 +701,7 @@ body {
 
 .form-control, .form-select {
     background-color: transparent;
-    color: rgba(255, 255, 255, 0.6);
+    color: $textGrey;
 }
 
 .buttonBorderRadius {

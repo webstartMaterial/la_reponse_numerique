@@ -63,6 +63,19 @@ class ArticleRepository extends ServiceEntityRepository
         return $query->getResult();
     }
 
+    public function findBySearch($search) {
+
+        $qb = $this->createQueryBuilder('a');
+        $qb->where(
+            $qb->expr()->like('a.title', ':search')
+        )
+        ->setParameter('search', '%'.$search.'%')
+        ->setMaxResults(20);
+
+        $query = $qb->getQuery();
+        return $query->getResult();
+    }
+
 //    /**
 //     * @return Article[] Returns an array of Article objects
 //     */

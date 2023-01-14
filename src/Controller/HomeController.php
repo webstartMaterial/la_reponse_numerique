@@ -20,7 +20,14 @@ class HomeController extends AbstractController
     public function index(PersistenceManagerRegistry $doctrine, PaginatorInterface $paginator, Request $request): Response
     {
 
-        if (!empty($request->request->get('newsletter'))) {
+        $search = null;
+        
+        if (!empty($request->request->get('search'))) {
+
+            $search = strtolower($request->request->get('search'));
+            $articles = $doctrine->getRepository(Article::class)->findBySearch($search);
+
+        } else if (!empty($request->request->get('newsletter'))) {
             
             $email = strtolower($request->request->get('newsletter'));
             $frequence = $request->request->get('frequence');
@@ -36,10 +43,11 @@ class HomeController extends AbstractController
             $this->addFlash('secondary', 'Vous avez bien été inscrit à notre newsletter !');
 
 
+        } else {
+            $articles = $doctrine->getRepository(Article::class)->findAll();
         }
 
         $categories = $doctrine->getRepository(Category::class)->findAll();
-        $articles = $doctrine->getRepository(Article::class)->findAll();
 
         $articles = $paginator->paginate(
             $articles, /* query NOT result */
@@ -51,6 +59,7 @@ class HomeController extends AbstractController
             'controller_name' => 'HomeController',
             'listCategories' => $categories,
             'listArticles' => $articles,
+            'search' => $search
         ]);
     }
 }

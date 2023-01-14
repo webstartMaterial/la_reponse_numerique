@@ -13,7 +13,9 @@
     <div class="d-flex flex-column align-items-center side-bar px-3 pb-3">
 
         <div class="d-flex flex-column align-items-center logo px-5 py-2">
-            <img src="{{ asset('logo.png')}}" width="100%" title="Académie WS" alt="Académie WS">
+            <a href="{{ path('app_home') }}">
+                <img src="{{ asset('logo.png')}}" width="100%" title="Académie WS" alt="Académie WS">
+            </a>
             <p class="logo-headline"> Blog officiel </p>
         </div>
 
@@ -23,7 +25,7 @@
                 <img src="{{ asset('samih_habbani.jpg')}}" class="owner-img" width="200%" title="Académie WS - Samih Habbani" alt="Académie WS - Samih Habbani">
             </div>
 
-            <h3 class="mt-3 p-2 owner-name"> Samih <br> Habbani <br> <span class="text-secondary"> <a class="text-secondary" href="http://www.academiews.fr">www.academiews.fr</a> </span> </h3>
+            <h3 class="mt-3 p-2 owner-name fst-italic"> Samih <br> Habbani <br> <span class="text-secondary"> <a class="text-secondary" href="http://www.academiews.fr">www.academiews.fr</a> </span> </h3>
 
         </div>
         
@@ -48,21 +50,6 @@
         </div>
     </div>
 
-    {# <div class="d-flex align-items-center header body-grey">
-        <div class="h-100 w-100 d-flex align-items-center justify-content-end"> 
-            <nav class="d-flex align-items-center">
-                <ul class="d-flex align-items-center">
-                    <li class="px-2"><a class="text-less-grey fw-bold" href="https://academiews.fr/categories">Nos formations vidéos</a></li>
-                    <li class="px-2"><a class="text-less-grey fw-bold" href="{{ path('who_we_are') }}">Qui sommes-nous?</a></li>
-                    <li class="px-2"><a class="text-less-grey fw-bold" href="{{ path('contact') }}">Contact</a></li>
-                    <li class="px-2">
-                        <i class="loupe fa-solid fa-magnifying-glass"></i>
-                        <input type="search" placeholder="Rechercher un article" />
-                    </li>
-            </nav>
-        </div>
-    </div> #}
-
     {% include 'nav.html.twig' %}
 
 
@@ -80,30 +67,48 @@
                 {% endfor %}
             {% endfor %}
 
-            <h1 class="mb-5 text-less-grey"> Nos derniers articles </h1>
 
+            {% if search is defined and search is not null %}
+                <h2 class="mb-5 text-less-grey"> Nos articles liés à votre recherche '<span> {{ search }} </span>' ...  </h2>
+            {% else %}
+                <h1 class="mb-5 text-less-grey"> Nos derniers articles </h1>
+            {% endif %}
             {% for article in listArticles %}
-                <a href="{{ path('article', {id: 1}) }}">
-                    <article class="col-md-10 d-flex mt-5">
+                    <article class="col-md-10 d-flex mt-5 cursor-pointer">
+                        <a href="{{ path('article', {id: article.id}) }}">
+                            <div class="col-md-3 picture">
+                                <img alt="{{ article.title }}" title="{{ article.title }}" src="{{ asset('' ~ article.picture)}}" width="100%" >
+                            </div>
 
-                        <div class="col-md-3 picture">
-                            <img alt="{{ article.title }}" title="{{ article.title }}" src="{{ asset('' ~ article.picture)}}" width="100%" >
-                        </div>
+                            <div class="col-md-9 chapo">
+                                <p class="text-grey"> <span class="fw-bold"> {{ article.category.name }} </span> - {{ article.date |date("m/d/Y") }}</p>
+                                <a href="{{ path('article', {id: article.id}) }}"> <h4> {{ article.title }} </h4></a>
+                                <p class="text-grey"> {{ article.chapo[:250] ~ '...'  }} </p>
+                                <span class="share-separator"></span>
+                                <span class="share-article text-grey fst-italic"> Partager l'article : </span>
+                        </a>
 
-                        <div class="col-md-9 chapo">
-                            <p class=""> <span class="fw-bold"> {{ article.category.name }} </span> - {{ article.date |date("m/d/Y") }}</p>
-                            <a href="{{ path('article', {id: article.id}) }}"> <h4> {{ article.title }} </h4></a>
-                            <p class="text-grey"> {{ article.chapo[:250] ~ '...'  }} </p>
-                            <span class="share-separator"></span>
-                            <span class="share-article text-grey"> Partager l'article : </span>
                             <ul>
-                                <i style="color:#1DA1F2;" class="fa-brands fa-twitter"></i>
-                                <i style="color:#1DA1F2;" class="px-2 fa-brands fa-linkedin"></i>
-                                <i style="color:#3b5998;" class="fa-brands fa-facebook"></i>
+
+
+                                <a href="https://twitter.com/share?url=https://www.lareponsenumerique.fr/article/{{article.id}}&via=lareponsenumerique&text={{article.title}}"
+                                onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
+                                    target="_blank" title="Share on Twitter">
+                                    <i style="color:#1DA1F2;" class="fa-brands fa-twitter"></i>
+                                </a>
+                                <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://www.lareponsenumerique.fr/article/1"
+                                    onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
+                                    target="_blank" title="Share on Facebook">  
+                                    <i style="color:#1DA1F2;" class="px-2 fa-brands fa-linkedin"></i>
+                                </a>
+                                <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.lareponsenumerique.fr/article/1"
+                                    onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
+                                    target="_blank" title="Share on Facebook">                                    
+                                    <i style="color:#3b5998;" class="fa-brands fa-facebook"></i>
+                                </a>
                             </ul>
                         </div>
                     </article>
-                </a>
 
                 {% if loop.last == false %}
                     <div class="separator mt-5" style="height:2px; background:rgba(255,255,255, 0.05)"> </div>
@@ -144,7 +149,7 @@
                             </div>
                         </div>
 
-                        <p class="col-7 text-grey fw-italic"> En cliquant sur "S'inscrire", vous acceptez les CGU ainsi que notre politique de confidentialité décrivant la finalité des traitements de vos données personnelles. </p>
+                        <p class="col-7 text-grey fst-italic"> En cliquant sur "S'inscrire", vous acceptez les CGU ainsi que notre politique de confidentialité décrivant la finalité des traitements de vos données personnelles. </p>
 
                     </form>
 

@@ -22,6 +22,14 @@ require('@fortawesome/fontawesome-free/js/all.js');
 (function () {
 
 
+    $('#search').keypress(function (e) {
+        if (e.which == 13) {
+          $('.form-search').submit();
+          return false;    //<---- Add this line
+        }
+      });
+
+
     $("article").hover(function() {
         $(this).find("h4").addClass("underline");
     }, function() {
