@@ -33,18 +33,18 @@
             <ul class="w-100 list-items">
 
                 {% for category in listCategories %}
-                    <li class="cursor-pointer px-5 py-4 text-primary fw-bold"> 
+                    <li class="category cursor-pointer px-5 py-4 text-primary fw-bold"> 
                         <a href="{{ path('articles', {id: category.id}) }}"> {{ category.name }} </a>
                     </li>
                 {% endfor %}
 
-                <li class="d-flex justify-content-between px-5 py-4 text-primary fw-bold"> 
-                    <i style="color:#C13584;" class="fa-brands fa-instagram"></i>
-                    <i style="color:#3b5998;" class="fa-brands fa-facebook"></i>
-                    <i style="color:#000000;" class="fa-brands fa-tiktok"></i>
-                    <i style="color:#FF0000;" class="fa-brands fa-youtube"></i>
-                    <i style="color:#1DA1F2;" class="fa-brands fa-twitter"></i>
-                    <i style="color:#1DA1F2;" class="fa-brands fa-linkedin"></i>
+                <li class="social-networks d-flex justify-content-between px-5 py-4 text-primary fw-bold"> 
+                    <a href="https://www.instagram.com/academiews/"><i style="color:#C13584;" class="cursor-pointer fa-brands fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/academiews"><i style="color:#3b5998;" class="cursor-pointer fa-brands fa-facebook"></i></a>
+                    <a href="https://www.tiktok.com/@academiews"><i style="color:#000000;" class="cursor-pointer fa-brands fa-tiktok"></i></a>
+                    <a href="https://www.youtube.com/@academiews"><i style="color:#FF0000;" class="cursor-pointer fa-brands fa-youtube"></i></a>
+                    <a href="https://twitter.com/academiews"><i style="color:#1DA1F2;" class="cursor-pointer fa-brands fa-twitter"></i></a>
+                    <a href="https://www.linkedin.com/company/academie-ws/"><i style="color:#1DA1F2;" class="cursor-pointer fa-brands fa-linkedin"></i></a>
                 </li>
             </ul>
         </div>
@@ -53,7 +53,7 @@
     {% include 'nav.html.twig' %}
 
 
-    <div class="row mx-auto content">
+    <div class="row mx-auto content mt-5">
 
         <div class="col-md-8 p-5 inner-content">
 
@@ -89,8 +89,6 @@
                         </a>
 
                             <ul>
-
-
                                 <a href="https://twitter.com/share?url=https://www.lareponsenumerique.fr/article/{{article.id}}&via=lareponsenumerique&text={{article.title}}"
                                 onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
                                     target="_blank" title="Share on Twitter">

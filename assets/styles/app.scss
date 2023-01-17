@@ -107,7 +107,7 @@ article {
 
         }
 
-        li:hover {
+        li.category:hover {
             background-color: $colorGreyLight;
         }
 
@@ -145,6 +145,42 @@ article {
         }
 
     }
+}
+
+.social-networks, article {
+
+    svg:hover {
+        font-size: 1.2rem;
+        transition-duration: 0.5s;
+        transition-timing-function: ease-in-out;
+    }
+
+}
+
+//
+// Pagination
+//
+
+.navigation {
+
+    .page-link {
+        background-color: transparent !important;
+        border-color: $secondary;
+        color: $textLessGrey;
+    }
+
+    .page-item.active {
+        .page-link {
+            color: $secondary;
+        }
+    }
+
+    .page-item.disabled {
+        .page-link {
+            color: $textGrey;
+        }
+    }
+
 }
 
 .logo-headline {
@@ -232,9 +268,10 @@ input[type=search] {
 
 #header-article {
 
-    position: sticky;
+    position: fixed;
     top: 0;
-    left: 0;
+    padding: 0;
+    margin: 0;
 
     .home-part {
         height: 60px;
@@ -318,6 +355,14 @@ input[type=search] {
     margin-bottom: 3rem;
     margin-top: 3rem;
     font-weight: bold;
+}
+
+.article-content h3 {
+    color : $textGrey;
+    margin-bottom: 3rem;
+    margin-top: 3rem;
+    font-weight: bold;
+    padding-left: 250px;
 }
 
 .article-content h2::before {
@@ -544,7 +589,7 @@ body {
 
     .article-content {
     
-        p, ul {
+        p, ul, h3 {
             padding-left: 0;
         }
     }
@@ -709,7 +754,7 @@ body {
 }
 
 .navbar {
-    position: sticky;
+    position: fixed;
     top: 0;
     background: $darkGrey;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);

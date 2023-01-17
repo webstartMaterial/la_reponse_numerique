@@ -5,9 +5,10 @@
 
 {% block metas %} 
 
-<meta name="twitter:card" content="{{article.chapo}}" />
+<meta name="twitter:card" content="photo" />
 <meta name="twitter:site" content="@lareponsenumerique" />
 <meta name="twitter:creator" content="@lareponsenumerique" />
+<meta name="twitter:image:src" content="https://www.lareponsenumerique.fr/{{article.picture}}">
 <meta property="og:url" content="https://www.lareponsenumerique.fr/article/{{article.id}}" />
 <meta property="og:title" content="{{article.title}}" />
 <meta property="og:description" content="{{article.chapo}}" />
@@ -19,7 +20,7 @@
 
 <div class="detail-article">
 
-    <div class="row align-items-center" id="header-article">
+    <div class="row align-items-center w-100" id="header-article">
 
         <div class="d-flex col-3 align-items-center justify-content-center home-part bg-darkGrey">
             <a href="{{ path('app_home') }}">
@@ -44,7 +45,7 @@
 
 
 {# ARTICLE #}
-    <div id="article" class="row py-5">
+    <div id="article" class="row py-5 mt-5">
 
         <div class="row col-8 mx-auto justify-content-center flex-column align-items-center">
 
