@@ -32,17 +32,17 @@ class ArticlesController extends AbstractController
         
         return $this->render('articles/index.html.twig', [
             'listArticles' => $articles,
-            'categorySelected' => $category
+            'categorySelected' => $category,
+            'searchSelect' => null
         ]);
     }
 
-    #[Route('/articles/{subject}', name: 'articles_by_subjects')]
-    public function articlesBySubject(Request $request, PersistenceManagerRegistry $doctrine): Response
+    #[Route('/articles/search/{subject}', name: 'articles_by_subjects')]
+    public function articlesBySubject(Request $request, PersistenceManagerRegistry $doctrine, PaginatorInterface $paginator): Response
     {
 
-        $idCategory = $request->get("id");
-        $articles = $doctrine->getRepository(Article::class)->findByCategory($idCategory);
-        $category = $doctrine->getRepository(Category::class)->find($idCategory);
+        $subject = strtolower($request->get("subject"));
+        $articles = $doctrine->getRepository(Article::class)->findBySearch($subject);
         
         $articles = $paginator->paginate(
             $articles, /* query NOT result */
@@ -52,7 +52,30 @@ class ArticlesController extends AbstractController
 
         return $this->render('articles/index.html.twig', [
             'listArticles' => $articles,
-            'categorySelected' => $category
+            'searchSelect' => $subject,
+            'categorySelected' => null
+
         ]);
     }
+
+    #[Route('/articles', name: 'all_articles')]
+    public function allArticles(Request $request, PersistenceManagerRegistry $doctrine, PaginatorInterface $paginator): Response
+    {
+
+        $articles = $doctrine->getRepository(Article::class)->findAll();
+
+        $articles = $paginator->paginate(
+            $articles, /* query NOT result */
+            $request->query->getInt('page', 1), /*page number*/
+            5 /*limit per page*/
+        );
+
+        
+        return $this->render('articles/index.html.twig', [
+            'listArticles' => $articles,
+            'categorySelected' => null,
+            'searchSelect' => null
+        ]);
+    }
+
 }

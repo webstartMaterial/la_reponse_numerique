@@ -6,8 +6,6 @@
 
 {% block body %}
 
-<div class="row p-0">
-
     <div class="col-12 bg-secondary progression"> </div>
 
     <div class="d-flex flex-column align-items-center side-bar px-3 pb-3">
@@ -25,8 +23,14 @@
                 <img src="{{ asset('samih_habbani.jpg')}}" class="owner-img" width="200%" title="Académie WS - Samih Habbani" alt="Académie WS - Samih Habbani">
             </div>
 
-            <h3 class="mt-3 p-2 owner-name fst-italic"> Samih <br> Habbani <br> <span class="text-secondary"> <a class="text-secondary" href="http://www.academiews.fr">www.academiews.fr</a> </span> </h3>
-
+            <div class="d-flex flex-column">
+                <h3 class="mt-3 px-2 owner-name fst-italic"> Samih <br> Habbani <br> <span class="text-secondary"> <a class="text-secondary" href="http://www.academiews.fr">www.academiews.fr</a> </span> </h3>
+                <div class="px-2"> 
+                    <a title="Flux RSS" href="http://fetchrss.com/rss/63c8096f2bb88407f5146de263c8096375e1352b7f3e7072.xml">
+                        <i class="fa-solid fa-rss flux-rss"></i>
+                    </a>
+                </div>
+            </div>
         </div>
         
         <div class="d-flex w-100 mt-5">   
@@ -46,124 +50,116 @@
                     <a href="https://twitter.com/academiews"><i style="color:#1DA1F2;" class="cursor-pointer fa-brands fa-twitter"></i></a>
                     <a href="https://www.linkedin.com/company/academie-ws/"><i style="color:#1DA1F2;" class="cursor-pointer fa-brands fa-linkedin"></i></a>
                 </li>
+
             </ul>
         </div>
     </div>
 
     {% include 'nav.html.twig' %}
 
+    <div class="global-layout">
 
-    <div class="row mx-auto content mt-5">
+        <div class="row mx-auto content py-5">
 
-        <div class="col-md-8 p-5 inner-content">
+            <div class="col-md-8 p-5 inner-content">
 
-            {% for label, messages in app.flashes(['secondary', 'warning']) %}
-                {% for message in messages %}
-                    <div class="col-md-6">
-                        <div class="alert alert-{{ label }}" role="alert">
-                            {{ message }}
-                        </div>
-                    </div>
-                {% endfor %}
-            {% endfor %}
+                {% include 'messages.html.twig' %}
 
-
-            {% if search is defined and search is not null %}
-                <h2 class="mb-5 text-less-grey"> Nos articles liés à votre recherche '<span> {{ search }} </span>' ...  </h2>
-            {% else %}
-                <h1 class="mb-5 text-less-grey"> Nos derniers articles </h1>
-            {% endif %}
-            {% for article in listArticles %}
-                    <article class="col-md-10 d-flex mt-5 cursor-pointer">
-                        <a href="{{ path('article', {id: article.id}) }}">
-                            <div class="col-md-3 picture">
-                                <img alt="{{ article.title }}" title="{{ article.title }}" src="{{ asset('' ~ article.picture)}}" width="100%" >
-                            </div>
-
-                            <div class="col-md-9 chapo">
-                                <p class="text-grey"> <span class="fw-bold"> {{ article.category.name }} </span> - {{ article.date |date("m/d/Y") }}</p>
-                                <a href="{{ path('article', {id: article.id}) }}"> <h4> {{ article.title }} </h4></a>
-                                <p class="text-grey"> {{ article.chapo[:250] ~ '...'  }} </p>
-                                <span class="share-separator"></span>
-                                <span class="share-article text-grey fst-italic"> Partager l'article : </span>
-                        </a>
-
-                            <ul>
-                                <a href="https://twitter.com/share?url=https://www.lareponsenumerique.fr/article/{{article.id}}&via=lareponsenumerique&text={{article.title}}"
-                                onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
-                                    target="_blank" title="Share on Twitter">
-                                    <i style="color:#1DA1F2;" class="fa-brands fa-twitter"></i>
-                                </a>
-                                <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://www.lareponsenumerique.fr/article/1"
-                                    onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
-                                    target="_blank" title="Share on Facebook">  
-                                    <i style="color:#1DA1F2;" class="px-2 fa-brands fa-linkedin"></i>
-                                </a>
-                                <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.lareponsenumerique.fr/article/1"
-                                    onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
-                                    target="_blank" title="Share on Facebook">                                    
-                                    <i style="color:#3b5998;" class="fa-brands fa-facebook"></i>
-                                </a>
-                            </ul>
-                        </div>
-                    </article>
-
-                {% if loop.last == false %}
-                    <div class="separator mt-5" style="height:2px; background:rgba(255,255,255, 0.05)"> </div>
+                {% if search is defined and search is not null %}
+                    <h2 class="mb-5 text-less-grey"> Nos articles liés à votre recherche '<span> {{ search }} </span>' ...  </h2>
+                {% else %}
+                    <h1 class="mb-5 text-less-grey"> Nos derniers articles </h1>
                 {% endif %}
-            {% endfor %}
+                {% for article in listArticles %}
+                        <article class="col-md-10 d-flex mt-5 cursor-pointer">
+                            <a href="{{ path('article', {id: article.id}) }}">
+                                <div class="col-md-3 picture">
+                                    <img alt="{{ article.title }}" title="{{ article.title }}" src="{{ asset('' ~ article.picture)}}" width="100%" >
+                                </div>
+
+                                <div class="col-md-9 chapo">
+                                    <p class="text-grey"> <span class="fw-bold"> {{ article.category.name }} </span> - {{ article.date |date("m/d/Y") }}</p>
+                                    <a href="{{ path('article', {id: article.id}) }}"> <h4> {{ article.title }} </h4></a>
+                                    <p class="text-grey"> {{ article.chapo[:250] ~ '...'  }} </p>
+                                    <span class="share-separator"></span>
+                                    <span class="share-article text-grey fst-italic"> Partager l'article : </span>
+                            </a>
+
+                                <ul>
+                                    <a href="https://twitter.com/share?url=https://www.lareponsenumerique.fr/article/{{article.id}}&via=lareponsenumerique&text={{article.title}}"
+                                    onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
+                                        target="_blank" title="Share on Twitter">
+                                        <i style="color:#1DA1F2;" class="fa-brands fa-twitter"></i>
+                                    </a>
+                                    <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://www.lareponsenumerique.fr/article/1"
+                                        onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
+                                        target="_blank" title="Share on Facebook">  
+                                        <i style="color:#1DA1F2;" class="px-2 fa-brands fa-linkedin"></i>
+                                    </a>
+                                    <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.lareponsenumerique.fr/article/1"
+                                        onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
+                                        target="_blank" title="Share on Facebook">                                    
+                                        <i style="color:#3b5998;" class="fa-brands fa-facebook"></i>
+                                    </a>
+                                </ul>
+
+                            </div>
+                        </article>
+
+                    {% if loop.last == false %}
+                        <div class="separator mt-5" style="height:2px; background:rgba(255,255,255, 0.05)"> </div>
+                    {% endif %}
+                {% endfor %}
 
 
-            <div class="py-5 col-md-12 navigation">
-                {{ knp_pagination_render(listArticles) }}
+                <div class="pt-5 col-md-12 navigation">
+                    {{ knp_pagination_render(listArticles) }}
+                </div>  
+
+            </div>
+
+            <div class="h1-parent col-md-4 justify-content-center">
+                <h1 class="text-secondary"> Formations digitales en vidéo sans bla-bla ! </h1>
+                <div class="main-title-separator"> </div>
             </div>  
 
-        </div>
 
-        <div class="h1-parent col-md-4 justify-content-center p-5">
-            <h1 class="text-secondary"> Formations digitales en vidéo sans bla-bla ! </h1>
-            <div class="main-title-separator"> </div>
-        </div>  
+            {# NEWSLETTER  #}
+            <div class="row mx-auto mb-5 px-5 pt-5" id="newsletter">
 
-
-        {# NEWSLETTER  #}
-        <div class="row mx-auto my-5 px-5 pt-5" id="newsletter">
-
-            <div class="col-md-8">
-                <h2 class="text-less-grey pt-5 pb-3"> Recevez par email toute l’actualité du digital </h2>
-                    <form method="POST">
-                        <div class="d-flex pb-3">
-                            <input type="text" placeholder="Entre votre adresse email" class="col-8 newsletter px-5 py-3" name="newsletter" >
-                            <input class="text-less-grey px-3 bg-secondary" type="submit" value="JE M'INSCRIS">
-                        </div>
-                        <div class="d-flex pb-3">
-                            <div class="mx-3">
-                                <input type="radio" id="test1" name="frequence" value="1" checked>
-                                <label class="text-grey" for="test1">Chaque matin</label>
+                <div class="col-md-8">
+                    <h2 class="text-less-grey pt-5 pb-3"> Recevez par email toute l’actualité du digital </h2>
+                        <form method="POST">
+                            <div class="d-flex pb-3">
+                                <input type="text" placeholder="Entre votre adresse email" class="col-8 newsletter px-5 py-3" name="newsletter" >
+                                <input class="text-less-grey px-3 bg-secondary" type="submit" value="JE M'INSCRIS">
                             </div>
-                            <div class="mx-3">
-                                <input type="radio" id="test2" name="frequence" value="2">
-                                <label class="text-grey" for="test2">Chaque matin</label>
+                            <div class="d-flex pb-3">
+                                <div class="mx-3">
+                                    <input type="radio" id="test1" name="frequence" value="1" checked>
+                                    <label class="text-grey" for="test1">Chaque matin</label>
+                                </div>
+                                <div class="mx-3">
+                                    <input type="radio" id="test2" name="frequence" value="2">
+                                    <label class="text-grey" for="test2">Chaque matin</label>
+                                </div>
                             </div>
-                        </div>
 
-                        <p class="col-7 text-grey fst-italic"> En cliquant sur "S'inscrire", vous acceptez les CGU ainsi que notre politique de confidentialité décrivant la finalité des traitements de vos données personnelles. </p>
+                            <p class="col-7 text-grey fst-italic"> En cliquant sur "S'inscrire", vous acceptez les CGU ainsi que notre politique de confidentialité décrivant la finalité des traitements de vos données personnelles. </p>
 
-                    </form>
+                        </form>
+
+                </div>
+
+                <div class="d-flex col-md-4 align-items-end illustration-part">
+                    <img alt="Abonnez-vous à la newsletter de la réponse numérique" title="Newsletter de la réponse numérique" class="w-100" src="{{ asset('newsletter.png') }}">
+                </div>
 
             </div>
 
-            <div class="d-flex col-md-4 align-items-end illustration-part">
-                <img alt="Abonnez-vous à la newsletter de la réponse numérique" title="Newsletter de la réponse numérique" class="w-100" src="{{ asset('newsletter.png') }}">
-            </div>
+            {% include 'footer.html.twig' %}
 
         </div>
-
-        {% include 'footer.html.twig' %}
-
     </div>
-
-</div>
-
 
 {% endblock %}

@@ -9,21 +9,20 @@
 
 {% block body %}
     
-    <div class="row">
+{% include 'nav.html.twig' %}
 
-        {% include 'nav.html.twig' %}
+{% for label, messages in app.flashes(['secondary', 'warning']) %}
+    {% for message in messages %}
+        <div class="col-md-6 mx-auto mt-5">
+            <div class="alert alert-{{ label }}" role="alert">
+                {{ message }}
+            </div>
+        </div>
+    {% endfor %}
+{% endfor %}
 
-        {% for label, messages in app.flashes(['secondary', 'warning']) %}
-            {% for message in messages %}
-                <div class="col-md-6 mx-auto mt-5">
-                    <div class="alert alert-{{ label }}" role="alert">
-                        {{ message }}
-                    </div>
-                </div>
-            {% endfor %}
-        {% endfor %}
-
-    <div class="d-flex my-5">
+<div class="global-layout">
+    <div class="d-flex py-5">
         <div class="form-shadow-black relative row col-10 col-sm-10 col-md-6 mx-auto justify-content-center align-items-centerwhite smallBorderRadius p-0 my-5">
             <div class="form-circle"> </div>
             {{ form_start(contactForm, {"attr": {"class": "col-md-12 row px-5 py-5 justify-content-center" } }) }}
@@ -44,9 +43,11 @@
 
             </div>
         </div>
+    
+            {% include 'footer.html.twig' %}
+
     </div>
 </div>
 
-        {% include 'footer.html.twig' %}
 
 {% endblock %}

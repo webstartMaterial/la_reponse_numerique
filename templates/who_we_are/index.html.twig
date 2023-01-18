@@ -5,20 +5,21 @@
 
 {% block body %}
 
-    <div class="row">
+    {% include 'nav.html.twig' %}
 
-        {% include 'nav.html.twig' %}
+    <div class="global-layout">
 
-        <div class="row py-5 col-8 mx-auto">
+        <div class="row py-5 mx-auto">
 
             <h1 class="text-center text-less-grey">Hi! I'm Mosh Hamedani and here's my story...</h1>
+            <iframe class="my-5" src="https://player.vimeo.com/video/743921597?h=5f97bde804" width="640" height="564" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
 
-            <iframe class="mt-5" src="https://player.vimeo.com/video/743921597?h=5f97bde804" width="640" height="564" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
-        
+        {% include 'footer.html.twig' %}
+
         </div>
+
 
     </div>
 
-{% include 'footer.html.twig' %}
 
 {% endblock %}

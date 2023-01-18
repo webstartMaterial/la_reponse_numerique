@@ -41,7 +41,7 @@ class HomeController extends AbstractController
             $entityManager->flush();
 
             $this->addFlash('secondary', 'Vous avez bien été inscrit à notre newsletter !');
-
+            $articles = $doctrine->getRepository(Article::class)->findAll();
 
         } else {
             $articles = $doctrine->getRepository(Article::class)->findAll();

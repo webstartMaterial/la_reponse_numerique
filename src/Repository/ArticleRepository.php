@@ -56,7 +56,7 @@ class ArticleRepository extends ServiceEntityRepository
             ->where('a.category = :idCategory')
             ->andWhere('a.id != :idArticle')
             ->setParameters(['idArticle' => $idArticle , 'idCategory' => $idCategory ])
-            ->setMaxResults(3);
+            ->setMaxResults(15);
 
         $query = $qb->getQuery();
 
