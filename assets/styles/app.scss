@@ -36,6 +36,10 @@ $smallSize : 0.8rem;
 //
 //
 
+.form-select {
+    background: #272a3d url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3e%3cpath fill='white' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat right .75rem center/8px 10px !important;
+}
+
 * {
     font-family: 'Nunito', sans-serif;
 }
@@ -252,6 +256,7 @@ input[type=search] {
     border: 0; 
     color: $textGrey;   
 }
+
 
 ///
 /// 
@@ -638,7 +643,9 @@ body {
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
 
-
+    #iframe-presentation {
+        height: 250px;
+    }
 
 }
 
@@ -650,6 +657,14 @@ body {
 }
 
 @media only screen and (max-width: 767px) {
+
+    .list-related-articles {
+
+        .card-articles {
+            padding-bottom: 1rem !important;
+        }
+
+    }
 
     .article-content {
     
