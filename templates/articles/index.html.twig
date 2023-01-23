@@ -19,7 +19,7 @@
         {{ categorySelected.name }} : nos derniers articles {{parent()}} 
     {% else %}
         Nos derniers articles {{parent()}} 
-    {% endif %}>
+    {% endif %}
 {% endblock %}
 
 {% block body %}
@@ -28,7 +28,6 @@
 
 
     <div class="global-layout">
-
         <div class="row py-5">
 
             {% include 'ariane.html.twig' %}
@@ -52,7 +51,7 @@
                         </div>
 
                         <div class="col-md-9 chapo">
-                            <p class="text-grey"> <span class="fw-bold"> {{ article.category.name }} </span> - {{ article.date |date("m/d/Y") }}</p>
+                            <p class="text-grey"> <a class="text-grey" href="{{ path('articles', {id: article.id}) }}"><span class="fw-bold"> {{ article.category.name }}</a> </span> - {{ article.date |date("m/d/Y") }}</p>
                             <a aria-label="Partagez l'article intitulé '{{article.title}}' sur Linkedin." href="{{ path('article', {id: article.id}) }}"> <h4> {{ article.title }} </h4></a>
                             <p class="text-grey"> {{ article.chapo }} </p>
                             <span class="share-separator"></span>
@@ -66,11 +65,13 @@
                     </article>
 
                     {% if loop.last == false %}
-                        <div class="separator mt-5" style="height:2px; background:rgba(255,255,255, 0.05)">
+                        <div class="separator mt-5" style="height:2px; background:rgba(255,255,255, 0.05)"> </div>
+
                     {% endif %}
-                    </div>
 
                 {% endfor %}
+                
+            </div>
 
                 <div class="pb-5 col-md-8 mx-auto navigation">
                     {{ knp_pagination_render(listArticles) }}
@@ -108,7 +109,6 @@
 
                 {% include 'footer.html.twig' %}
 
-            </div>
 
         </div>
     </div>

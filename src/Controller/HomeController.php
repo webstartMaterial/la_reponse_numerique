@@ -19,15 +19,8 @@ class HomeController extends AbstractController
     #[Route('/', name: 'app_home')]
     public function index(PersistenceManagerRegistry $doctrine, PaginatorInterface $paginator, Request $request): Response
     {
-
-        $search = null;
         
-        if (!empty($request->request->get('search'))) {
-
-            $search = strtolower($request->request->get('search'));
-            $articles = $doctrine->getRepository(Article::class)->findBySearch($search);
-
-        } else if (!empty($request->request->get('newsletter'))) {
+        if (!empty($request->request->get('newsletter'))) {
             
             $email = strtolower($request->request->get('newsletter'));
             $frequence = $request->request->get('frequence');
@@ -59,7 +52,6 @@ class HomeController extends AbstractController
             'controller_name' => 'HomeController',
             'listCategories' => $categories,
             'listArticles' => $articles,
-            'search' => $search
         ]);
     }
 }
