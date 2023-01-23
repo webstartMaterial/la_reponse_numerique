@@ -20,7 +20,7 @@
 
 {# ARTICLE #}
 
-    {% include 'nav.html.twig' %}
+    {{ render(controller('App\\Controller\\NavBarController::index')) }}
 
     <div class="global-layout">
 
@@ -46,7 +46,7 @@
                 </div>
             
                 <div class="d-flex justify-content-center author text-grey mb-5">
-                    <a href="https://academiews.fr/who/we/are" class="byline">{{article.author}} </a>&nbsp;-&nbsp;<span class="posted-on"> Publié le 
+                    <a aria-label="Accéder à la page 'Qui sommes-nous?' de l'Académie WS"  href="https://academiews.fr/who/we/are" class="byline">{{article.author}} </a>&nbsp;-&nbsp;<span class="posted-on"> Publié le 
                     <time class="entry-date published updated" datetime="2023-01-10T11:16:57+01:00"> {{ article.date |date("m/d/Y") }}</time></span>
                 </div>
 
@@ -74,7 +74,7 @@
                     {% for relatedSubject in article.relatedSubjects %}
                         <div class="d-flex">
                             <li> 
-                                <a class="text-secondary" href="{{ path('articles_by_subjects', {subject:relatedSubject}) }}"> {{relatedSubject}} </a>
+                                <a aria-label="Retrouvez nos articles liés au sujet intitulé '{{ relatedSubject }}'" class="text-secondary" href="{{ path('articles_by_subjects', {subject:relatedSubject}) }}"> {{relatedSubject}} </a>
                             </li> 
                             <span class="text-less-grey px-2"> / <span>
                         </div>
@@ -119,7 +119,7 @@
                                         {{ article.chapo[:150] ~ '...'  }}
                                     </p>
 
-                                    <a href="{{ path('article', {id:relatedArticle.id}) }}" class="py-3 btn btn-outline-secondary text-white text-grey">Accéder à l'article</a>
+                                    <a aria-label="Accéder à l'article intitulé '{{ article.title }}' " href="{{ path('article', {id:relatedArticle.id}) }}" class="py-3 btn btn-outline-secondary text-white text-grey">Accéder à l'article</a>
 
                                 </div>
                             </div>
@@ -165,7 +165,7 @@
                 </div>
 
                 <div class="d-flex col-md-4 align-items-end illustration-part">
-                    <img alt="Abonnez-vous à la newsletter de la réponse numérique" title="Newsletter de la réponse numérique" class="w-100" src="{{ asset('newsletter.png') }}">
+                    <img alt="Abonnez-vous à la newsletter de la réponse numérique" title="Newsletter de la réponse numérique" class="w-100" src="{{ asset('newsletter.webp') }}">
                 </div>
 
             </div>
@@ -191,30 +191,30 @@
         <div class="modal-body p-4">
             <ul class="d-flex justify-content-around"> 
                 <li>
-                    <a href="https://twitter.com/share?url=https://www.lareponsenumerique.fr/article/{{article.id}}&via=lareponsenumerique&text={{article.title}}"
+                    <a aria-label="Partagez l'article intitulé '{{article.title}}' sur Twitter." href="https://twitter.com/share?url=https://www.lareponsenumerique.fr/article/{{article.id}}&via=lareponsenumerique&text={{article.title}}"
                     onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
                         target="_blank" title="Share on Twitter">
                         <i style="color:#1DA1F2;height:2rem" class="fa-brands fa-twitter"></i>
                     </a>
                 </li>
                 <li>
-                    <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://www.lareponsenumerique.fr/article/1"
+                    <a aria-label="Partagez l'article intitulé '{{article.title}}' sur Linkedin." href="https://www.linkedin.com/shareArticle?mini=true&url=https://www.lareponsenumerique.fr/article/1"
                         onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
-                        target="_blank" title="Share on Facebook">  
+                        target="_blank" title="Share on Linkedin">  
                         <i style="color:#1DA1F2;height:2rem" class="px-2 fa-brands fa-linkedin"></i>
                     </a>
                 </li>
                 <li>
-                    <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.lareponsenumerique.fr/article/1"
+                    <a aria-label="Partagez l'article intitulé '{{article.title}}' sur Facebook." href="https://www.facebook.com/sharer/sharer.php?u=https://www.lareponsenumerique.fr/article/1"
                         onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
                         target="_blank" title="Share on Facebook">                                    
                         <i style="color:#3b5998;height:2rem" class="fa-brands fa-facebook"></i>
                     </a>
                 </li>
                 <li>
-                    <a href="mailto:?subject=Académie WS - {{ article.title }}&amp;body=La Rubrique du numérique - {{ article.chapo }} - https://www.lareponsenumerique.fr/{{article.id}}" title="Share by Email"
+                    <a aria-label="Partagez l'article intitulé '{{article.title}}' par email." href="mailto:?subject=Académie WS - {{ article.title }}&amp;body=La Rubrique du numérique - {{ article.chapo }} - https://www.lareponsenumerique.fr/{{article.id}}" title="Share by Email"
                         onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
-                        target="_blank" title="Share on Facebook">                                    
+                        target="_blank" title="Share by email">                                    
                         <i style="height:2rem" class="text-secondary fa-solid fa-envelope"></i>
                     </a>
                 </li>
@@ -222,7 +222,7 @@
         </div>
         <div class="d-flex px-3 pb-3">
             <input type="text" class="px-5 py-3 w-100" id="clipboard" value="https://www.academiews.fr/article/{{article.id}}" >
-            <button class="text-less-grey px-3 bg-secondary btn-clipboard">COPIER</button>
+            <button aria-label="Copiez le lien de l'article intitulé '{{article.title}}' sur Linkedin." class="text-less-grey px-3 bg-secondary btn-clipboard">COPIER</button>
         </div>
         </div>
     </div>

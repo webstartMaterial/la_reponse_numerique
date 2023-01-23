@@ -13,16 +13,16 @@
     <div class="col-10 mx-auto">
         <ul class="d-flex align-items-center">
             <li class="me-2"><i class="fa-solid fa-house text-grey"></i></li>
-            <li class="px-2 fw-bold"> <a class="text-grey" href="{{ path('app_home') }}"> Accueil </a> </li> <span class="text-grey"> / </span>
-            <li class="px-2 fw-bold"> <a class="text-grey" href="{{ path('all_articles') }}">Articles </a> </li> <span class="text-grey"> / </span>
+            <li class="px-2 fw-bold"> <a aria-label="Retourner à l'accueil" class="text-grey" href="{{ path('app_home') }}"> Accueil </a> </li> <span class="text-grey"> / </span>
+            <li class="px-2 fw-bold"> <a aria-label="Retournes à tous nos articles" class="text-grey" href="{{ path('all_articles') }}">Articles </a> </li> <span class="text-grey"> / </span>
             <li class="text-secondary px-2 fw-bold">
 
                 {% if searchSelect is defined and searchSelect is not null %}
-                    <a class="text-secondary" href="{{ path('articles_by_subjects', {subject:keyWord}) }}"> {{keyWord}} </a>
+                    <a aria-label="Nos articles liés à la recherche '{{ searchSelect }}'" class="text-secondary" href="{{ path('articles_by_subjects', {subject:keyWord}) }}"> {{keyWord}} </a>
                 {% elseif categorySelected is defined and categorySelected is not null %}
-                    <a class="text-secondary" href="{{ path('articles', {id: categorySelected.id}) }}"> {{ categorySelected.name }} </a>
+                    <a aria-label="Nos articles liés à la catégorie {{ categorySelected.name }}" class="text-secondary" href="{{ path('articles', {id: categorySelected.id}) }}"> {{ categorySelected.name }} </a>
                 {% else %}
-                    <a class="text-secondary" href="{{ path('all_articles', ) }}"> {{ keyWord }} </a> 
+                    <a aria-label="Tous nos articles" class="text-secondary" href="{{ path('all_articles', ) }}"> {{ keyWord }} </a> 
                 {% endif %}
 
             </li>

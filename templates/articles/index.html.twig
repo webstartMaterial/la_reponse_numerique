@@ -24,7 +24,8 @@
 
 {% block body %}
     
-    {% include 'nav.html.twig' %}
+    {{ render(controller('App\\Controller\\NavBarController::index')) }}
+
 
     <div class="global-layout">
 
@@ -52,7 +53,7 @@
 
                         <div class="col-md-9 chapo">
                             <p class="text-grey"> <span class="fw-bold"> {{ article.category.name }} </span> - {{ article.date |date("m/d/Y") }}</p>
-                            <a href="{{ path('article', {id: article.id}) }}"> <h4> {{ article.title }} </h4></a>
+                            <a aria-label="Partagez l'article intitulé '{{article.title}}' sur Linkedin." href="{{ path('article', {id: article.id}) }}"> <h4> {{ article.title }} </h4></a>
                             <p class="text-grey"> {{ article.chapo }} </p>
                             <span class="share-separator"></span>
                             <span class="share-article text-grey fst-italic very-small-font"> Partager l'article : </span>
@@ -100,7 +101,7 @@
                     </div>
 
                     <div class="d-flex col-md-4 align-items-end illustration-part">
-                        <img alt="Abonnez-vous à la newsletter de la réponse numérique" title="Newsletter de la réponse numérique" class="w-100" src="{{ asset('newsletter.png') }}">
+                        <img alt="Abonnez-vous à la newsletter de la réponse numérique" title="Newsletter de la réponse numérique" class="w-100" src="{{ asset('newsletter.webp') }}">
                     </div>
 
                 </div>

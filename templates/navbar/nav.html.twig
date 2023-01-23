@@ -1,0 +1,52 @@
+
+        <nav class="navbar align-items-start navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                
+                <div class="logo-smartphone d-flex flex-column align-items-start logo pt-3">
+                    <a aria-label="Retourner à la page d'accueil de la réponse numérique" href="{{ path('app_home') }}">
+                        <img src="{{ asset('logo.webp')}}" width="auto" height="40px" title="Académie WS" alt="Académie WS">
+                        <p class="logo-headline text-less-grey m-0 p-0"> Blog officiel </p>
+                    </a>
+                </div>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon">
+                    <i class="text-secondary fas fa-bars" style="font-size:28px;"></i>
+                    </span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <div class="full-screen d-flex align-items-center navbar-nav ms-auto">
+                        <ul class="d-flex align-items-center navbar-nav">
+                            <li class="nav-item">
+                                <a aria-label="Accéder aux formations vidéo de l'Académie WS" class="nav-link text-less-grey fst-italic fw-bold" href="https://academiews.fr/categories">Nos formations vidéos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a aria-label="Qui est l'Académie WS?" class="nav-link text-less-grey fst-italic fw-bold" href="{{ path('who_we_are') }}">Qui sommes nous?</a>
+                            </li>
+                            <li class="nav-item">
+                                <a aria-label="Contacter l'Académie WS" class="nav-link text-less-grey fst-italic fw-bold" href="{{ path('contact') }}">Contact</a>
+                            </li>
+                            <li class="nav-item">
+                                <form method="POST" class="form-search">
+                                    <i class="loupe fa-solid fa-magnifying-glass"></i>
+                                            <input type="search" id="search" name="search" placeholder="Rechercher un article" />
+                                </form>
+                            </li>
+                        </ul>
+                        <div class="popular-themes-part">
+                            <h6 class="text-less-grey mt-5"> Thèmes populaires </h6>
+                            <div class="d-flex flex-wrap">
+                                {% for category in listCategories %}
+                                <a aria-label="Accéder à nos articles liés à la catégorie {{ category.name }} " href="{{ path('articles', {id: category.id}) }}" class="p-2">
+                                    <div class="popular-theme cursor-pointer p-2 text-primary fw-bold"> 
+                                        {{ category.name }} 
+                                    </div>
+                                </a>
+                            {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>

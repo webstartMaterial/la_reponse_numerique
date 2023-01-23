@@ -11,8 +11,8 @@
     <div class="d-flex flex-column align-items-center side-bar px-3 pb-3">
 
         <div class="d-flex flex-column align-items-center logo px-5 py-2">
-            <a href="{{ path('app_home') }}">
-                <img src="{{ asset('logo.png')}}" width="100%" title="Académie WS" alt="Académie WS">
+            <a aria-label="Retourner à la page d'accueil de la réponse numérique." href="{{ path('app_home') }}">
+                <img src="{{ asset('logo.webp')}}" width="100%" title="Académie WS" alt="Académie WS">
             </a>
             <p class="logo-headline"> Blog officiel </p>
         </div>
@@ -20,13 +20,13 @@
         <div class="d-flex align-items-center mt-5">
 
             <div class="owner relative">
-                <img src="{{ asset('samih_habbani.jpg')}}" class="owner-img" width="200%" title="Académie WS - Samih Habbani" alt="Académie WS - Samih Habbani">
+                <img src="{{ asset('samih_habbani.webp')}}" class="owner-img" width="200%" title="Académie WS - Samih Habbani" alt="Académie WS - Samih Habbani">
             </div>
 
             <div class="d-flex flex-column">
-                <h3 class="mt-3 px-2 owner-name fst-italic"> Samih <br> Habbani <br> <span class="text-secondary"> <a class="text-secondary" href="http://www.academiews.fr">www.academiews.fr</a> </span> </h3>
+                <h3 class="mt-3 px-2 owner-name fst-italic"> Samih <br> Habbani <br> <span class="text-secondary"> <a aria-label="Accéder au site de l'Académie WS." class="text-secondary" href="http://www.academiews.fr">www.academiews.fr</a> </span> </h3>
                 <div class="px-2"> 
-                    <a title="Flux RSS" href="http://fetchrss.com/rss/63c8096f2bb88407f5146de263c8096375e1352b7f3e7072.xml">
+                    <a title="Flux RSS de la réponse numérique" href="http://fetchrss.com/rss/63c8096f2bb88407f5146de263c8096375e1352b7f3e7072.xml">
                         <i class="fa-solid fa-rss flux-rss"></i>
                     </a>
                 </div>
@@ -38,24 +38,24 @@
 
                 {% for category in listCategories %}
                     <li class="category cursor-pointer px-5 py-4 text-primary fw-bold"> 
-                        <a href="{{ path('articles', {id: category.id}) }}"> {{ category.name }} </a>
+                        <a aria-label="Accéder aux articles liés à la catégorie {{ category.name }}" href="{{ path('articles', {id: category.id}) }}"> {{ category.name }} </a>
                     </li>
                 {% endfor %}
 
                 <li class="social-networks d-flex justify-content-between px-5 py-4 text-primary fw-bold"> 
-                    <a href="https://www.instagram.com/academiews/"><i style="color:#C13584;" class="cursor-pointer fa-brands fa-instagram"></i></a>
-                    <a href="https://www.facebook.com/academiews"><i style="color:#3b5998;" class="cursor-pointer fa-brands fa-facebook"></i></a>
-                    <a href="https://www.tiktok.com/@academiews"><i style="color:#000000;" class="cursor-pointer fa-brands fa-tiktok"></i></a>
-                    <a href="https://www.youtube.com/@academiews"><i style="color:#FF0000;" class="cursor-pointer fa-brands fa-youtube"></i></a>
-                    <a href="https://twitter.com/academiews"><i style="color:#1DA1F2;" class="cursor-pointer fa-brands fa-twitter"></i></a>
-                    <a href="https://www.linkedin.com/company/academie-ws/"><i style="color:#1DA1F2;" class="cursor-pointer fa-brands fa-linkedin"></i></a>
+                    <a aria-label="Accéder à la page Instagram de l'Académie WS." href="https://www.instagram.com/academiews/"><i style="color:#C13584;" class="cursor-pointer fa-brands fa-instagram"></i></a>
+                    <a aria-label="Accéder à la page Facebook de l'Académie WS." href="https://www.facebook.com/academiews"><i style="color:#3b5998;" class="cursor-pointer fa-brands fa-facebook"></i></a>
+                    <a aria-label="Accéder à la page TikTok de l'Académie WS." href="https://www.tiktok.com/@academiews"><i style="color:#000000;" class="cursor-pointer fa-brands fa-tiktok"></i></a>
+                    <a aria-label="Accéder à la page Youtube de l'Académie WS." href="https://www.youtube.com/@academiews"><i style="color:#FF0000;" class="cursor-pointer fa-brands fa-youtube"></i></a>
+                    <a aria-label="Accéder à la page Twitter de l'Académie WS." href="https://twitter.com/academiews"><i style="color:#1DA1F2;" class="cursor-pointer fa-brands fa-twitter"></i></a>
+                    <a aria-label="Accéder à la page Linkedin de l'Académie WS." href="https://www.linkedin.com/company/academie-ws/"><i style="color:#1DA1F2;" class="cursor-pointer fa-brands fa-linkedin"></i></a>
                 </li>
 
             </ul>
         </div>
     </div>
 
-    {% include 'nav.html.twig' %}
+    {{ render(controller('App\\Controller\\NavBarController::index')) }}
 
     <div class="global-layout">
 
@@ -72,31 +72,31 @@
                 {% endif %}
                 {% for article in listArticles %}
                         <article class="col-md-10 d-flex mt-5 cursor-pointer">
-                            <a href="{{ path('article', {id: article.id}) }}">
+                            <a aria-label="Accéder à l'article intitulé '{{ article.title }}' " href="{{ path('article', {id: article.id}) }}">
                                 <div class="col-md-3 picture">
                                     <img alt="{{ article.title }}" title="{{ article.title }}" src="{{ asset('' ~ article.picture)}}" width="100%" >
                                 </div>
 
                                 <div class="col-md-9 chapo">
                                     <p class="text-grey"> <span class="fw-bold"> {{ article.category.name }} </span> - {{ article.date |date("m/d/Y") }}</p>
-                                    <a href="{{ path('article', {id: article.id}) }}"> <h4> {{ article.title }} </h4></a>
+                                    <a aria-label="Accéder à l'article intitulé '{{ article.title }}'" href="{{ path('article', {id: article.id}) }}"> <h4> {{ article.title }} </h4></a>
                                     <p class="text-grey"> {{ article.chapo[:250] ~ '...'  }} </p>
                                     <span class="share-separator"></span>
                                     <span class="share-article text-grey fst-italic"> Partager l'article : </span>
                             </a>
 
                                 <ul>
-                                    <a href="https://twitter.com/share?url=https://www.lareponsenumerique.fr/article/{{article.id}}&via=lareponsenumerique&text={{article.title}}"
+                                    <a aria-label="Partager l'article intitulé '{{ article.title }}' sur Twitter " href="https://twitter.com/share?url=https://www.lareponsenumerique.fr/article/{{article.id}}&via=lareponsenumerique&text={{article.title}}"
                                     onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
                                         target="_blank" title="Share on Twitter">
                                         <i style="color:#1DA1F2;" class="fa-brands fa-twitter"></i>
                                     </a>
-                                    <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://www.lareponsenumerique.fr/article/1"
+                                    <a aria-label="Partager l'article intitulé '{{ article.title }}' sur Linkedin " href="https://www.linkedin.com/shareArticle?mini=true&url=https://www.lareponsenumerique.fr/article/1"
                                         onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
                                         target="_blank" title="Share on Facebook">  
                                         <i style="color:#1DA1F2;" class="px-2 fa-brands fa-linkedin"></i>
                                     </a>
-                                    <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.lareponsenumerique.fr/article/1"
+                                    <a aria-label="Partager l'article intitulé '{{ article.title }}' sur Facebook " href="https://www.facebook.com/sharer/sharer.php?u=https://www.lareponsenumerique.fr/article/1"
                                         onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
                                         target="_blank" title="Share on Facebook">                                    
                                         <i style="color:#3b5998;" class="fa-brands fa-facebook"></i>
@@ -152,7 +152,7 @@
                 </div>
 
                 <div class="d-flex col-md-4 align-items-end illustration-part">
-                    <img alt="Abonnez-vous à la newsletter de la réponse numérique" title="Newsletter de la réponse numérique" class="w-100" src="{{ asset('newsletter.png') }}">
+                    <img alt="Abonnez-vous à la newsletter de la réponse numérique" title="Newsletter de la réponse numérique" class="w-100" src="{{ asset('newsletter.webp') }}">
                 </div>
 
             </div>

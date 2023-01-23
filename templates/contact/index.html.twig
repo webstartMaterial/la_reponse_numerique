@@ -9,7 +9,8 @@
 
 {% block body %}
     
-{% include 'nav.html.twig' %}
+    {{ render(controller('App\\Controller\\NavBarController::index')) }}
+
 
 {% for label, messages in app.flashes(['secondary', 'warning']) %}
     {% for message in messages %}

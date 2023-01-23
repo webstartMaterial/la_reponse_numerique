@@ -5,23 +5,16 @@
 
 {% block body %}
 
-    {% include 'nav.html.twig' %}
+    {{ render(controller('App\\Controller\\NavBarController::index')) }}
 
     <div class="global-layout">
-
         <div class="row py-5">
-
             <div class="col-10 mx-auto justify-content-center">
                 <h1 class="text-center text-less-grey">Hi! I'm Mosh Hamedani and here's my story...</h1>
                 <iframe id="iframe-presentation" class="my-5" src="https://player.vimeo.com/video/743921597?h=5f97bde804" width="100%" height="564" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
-            
-                {% include 'footer.html.twig' %}
-
             </div>
+            {% include 'footer.html.twig' %}
         </div>
-
-
     </div>
-
 
 {% endblock %}
