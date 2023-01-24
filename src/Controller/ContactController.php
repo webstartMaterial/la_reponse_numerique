@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 use App\Entity\Contact;
+use App\Entity\Newsletter;
 use App\Form\ContactType;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -24,6 +25,23 @@ class ContactController extends AbstractController
         $contact = new Contact();
         $form = $this->createForm(ContactType::class, $contact);
         $form->handleRequest($request);
+
+        if (!empty($request->request->get('newsletter'))) {
+            
+            $email = strtolower($request->request->get('newsletter'));
+            $frequence = $request->request->get('frequence');
+
+            $entityManager = $doctrine->getManager();
+            $newsletter = new Newsletter();
+            $newsletter->setEmail($email);
+            $newsletter->setFrequence($frequence);
+
+            $entityManager->persist($newsletter);
+            $entityManager->flush();
+
+            $this->addFlash('secondary', 'Vous avez bien été inscrit à notre newsletter !');
+
+        }
 
         if ($form->isSubmitted() && $form->isValid()) {
 

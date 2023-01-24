@@ -44,11 +44,11 @@
 
                 <li class="social-networks d-flex justify-content-between px-5 py-4 text-primary fw-bold"> 
                     <a aria-label="Accéder à la page Instagram de l'Académie WS." href="https://www.instagram.com/academiews/"><i style="color:#C13584;" class="cursor-pointer fa-brands fa-instagram"></i></a>
-                    <a aria-label="Accéder à la page Facebook de l'Académie WS." href="https://www.facebook.com/academiews"><i style="color:#3b5998;" class="cursor-pointer fa-brands fa-facebook"></i></a>
+                    <a aria-label="Accéder à la page Facebook de l'Académie WS." href="https://www.facebook.com/academiewsformations"><i style="color:#3b5998;" class="cursor-pointer fa-brands fa-facebook"></i></a>
                     <a aria-label="Accéder à la page TikTok de l'Académie WS." href="https://www.tiktok.com/@academiews"><i style="color:#000000;" class="cursor-pointer fa-brands fa-tiktok"></i></a>
                     <a aria-label="Accéder à la page Youtube de l'Académie WS." href="https://www.youtube.com/@academiews"><i style="color:#FF0000;" class="cursor-pointer fa-brands fa-youtube"></i></a>
                     <a aria-label="Accéder à la page Twitter de l'Académie WS." href="https://twitter.com/academiews"><i style="color:#1DA1F2;" class="cursor-pointer fa-brands fa-twitter"></i></a>
-                    <a aria-label="Accéder à la page Linkedin de l'Académie WS." href="https://www.linkedin.com/company/academie-ws/"><i style="color:#1DA1F2;" class="cursor-pointer fa-brands fa-linkedin"></i></a>
+                    <a aria-label="Accéder à la page Linkedin de l'Académie WS." href="https://www.linkedin.com/company/academiews/"><i style="color:#1DA1F2;" class="cursor-pointer fa-brands fa-linkedin"></i></a>
                 </li>
 
             </ul>
@@ -91,12 +91,12 @@
                                         target="_blank" title="Share on Twitter">
                                         <i style="color:#1DA1F2;" class="fa-brands fa-twitter"></i>
                                     </a>
-                                    <a aria-label="Partager l'article intitulé '{{ article.title }}' sur Linkedin " href="https://www.linkedin.com/shareArticle?mini=true&url=https://www.lareponsenumerique.fr/article/1"
+                                    <a aria-label="Partager l'article intitulé '{{ article.title }}' sur Linkedin " href="https://www.linkedin.com/shareArticle?mini=true&url=https://www.lareponsenumerique.fr/article/{{article.id}}"
                                         onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
-                                        target="_blank" title="Share on Facebook">  
+                                        target="_blank" title="Share on Linkedin">  
                                         <i style="color:#1DA1F2;" class="px-2 fa-brands fa-linkedin"></i>
                                     </a>
-                                    <a aria-label="Partager l'article intitulé '{{ article.title }}' sur Facebook " href="https://www.facebook.com/sharer/sharer.php?u=https://www.lareponsenumerique.fr/article/1"
+                                    <a aria-label="Partager l'article intitulé '{{ article.title }}' sur Facebook " href="https://www.facebook.com/sharer/sharer.php?u=https://www.lareponsenumerique.fr/article/{{article.id}}"
                                         onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
                                         target="_blank" title="Share on Facebook">                                    
                                         <i style="color:#3b5998;" class="fa-brands fa-facebook"></i>

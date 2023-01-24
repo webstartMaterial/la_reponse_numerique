@@ -1,0 +1,15 @@
+
+<div class="row">
+    <div class="col-8 mx-auto popular-themes-part py-5">
+        <h2 class="text-less-grey mb-5"> Thèmes populaires </h2>
+        <div class="d-flex flex-wrap">
+            {% for category in listCategories %}
+            <a aria-label="Accéder à nos articles liés à la catégorie {{ category.name }} " href="{{ path('articles', {id: category.id}) }}" class="p-2">
+                <div class="popular-theme cursor-pointer p-2 text-primary fw-bold"> 
+                    {{ category.name }} 
+                </div>
+            </a>
+        {% endfor %}
+        </div>
+    </div>
+</div>

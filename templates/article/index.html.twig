@@ -63,6 +63,8 @@
                 
             </div>
 
+            {{ render(controller('App\\Controller\\ThemesController::index')) }}
+
             <div class="row mx-auto related-subjects">
 
                 <div class="d-flex flex-wrap col-8 mx-auto py-5">
@@ -198,14 +200,14 @@
                     </a>
                 </li>
                 <li>
-                    <a aria-label="Partagez l'article intitulé '{{article.title}}' sur Linkedin." href="https://www.linkedin.com/shareArticle?mini=true&url=https://www.lareponsenumerique.fr/article/1"
+                    <a aria-label="Partagez l'article intitulé '{{article.title}}' sur Linkedin." href="https://www.linkedin.com/shareArticle?mini=true&url=https://www.lareponsenumerique.fr/article/{{article.id}}"
                         onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
                         target="_blank" title="Share on Linkedin">  
                         <i style="color:#1DA1F2;height:2rem" class="px-2 fa-brands fa-linkedin"></i>
                     </a>
                 </li>
                 <li>
-                    <a aria-label="Partagez l'article intitulé '{{article.title}}' sur Facebook." href="https://www.facebook.com/sharer/sharer.php?u=https://www.lareponsenumerique.fr/article/1"
+                    <a aria-label="Partagez l'article intitulé '{{article.title}}' sur Facebook." href="https://www.facebook.com/sharer/sharer.php?u=https://www.lareponsenumerique.fr/article/{{article.id}}"
                         onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
                         target="_blank" title="Share on Facebook">                                    
                         <i style="color:#3b5998;height:2rem" class="fa-brands fa-facebook"></i>

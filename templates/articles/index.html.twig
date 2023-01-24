@@ -44,33 +44,41 @@
                     <h1 class="text-center mb-5 text-less-grey"> Tous nos articles </h1>
                 {% endif %}
 
-                {% for article in listArticles %}
-                    <article class="col-md-10 d-flex mt-5">
+                {% if listArticles is not null and listArticles is empty %}
 
-                        <div class="col-md-3 picture">
-                            <img alt="{{ article.title }}" title="{{ article.title }}" src="{{ asset('' ~ article.picture)}}" width="100%" >
-                        </div>
+                    <p class="text-grey text-center"> Oups il semblerait que nous n'avons pas encore d'articles sur le sujet...</p>
 
-                        <div class="col-md-9 chapo">
-                            <p class="text-grey"> <a class="text-grey" href="{{ path('articles', {id: article.id}) }}"><span class="fw-bold"> {{ article.category.name }}</a> </span> - {{ article.date |date("m/d/Y") }}</p>
-                            <a aria-label="Partagez l'article intitulé '{{article.title}}' sur Linkedin." href="{{ path('article', {id: article.id}) }}"> <h4> {{ article.title }} </h4></a>
-                            <p class="text-grey"> {{ article.chapo }} </p>
-                            <span class="share-separator"></span>
-                            <span class="share-article text-grey fst-italic very-small-font"> Partager l'article : </span>
-                            <ul>
-                                <i style="color:#1DA1F2;" class="fa-brands fa-twitter"></i>
-                                <i style="color:#1DA1F2;" class="px-2 fa-brands fa-linkedin"></i>
-                                <i style="color:#3b5998;" class="fa-brands fa-facebook"></i>
-                            </ul>
-                        </div>
-                    </article>
+                {% else %}
 
-                    {% if loop.last == false %}
-                        <div class="separator mt-5" style="height:2px; background:rgba(255,255,255, 0.05)"> </div>
+                    {% for article in listArticles %}
+                        <article class="col-md-10 d-flex mt-5">
 
-                    {% endif %}
+                            <div class="col-md-3 picture">
+                                <img alt="{{ article.title }}" title="{{ article.title }}" src="{{ asset('' ~ article.picture)}}" width="100%" >
+                            </div>
 
-                {% endfor %}
+                            <div class="col-md-9 chapo">
+                                <p class="text-grey"> <a class="text-grey" href="{{ path('articles', {id: article.id}) }}"><span class="fw-bold"> {{ article.category.name }}</a> </span> - {{ article.date |date("m/d/Y") }}</p>
+                                <a aria-label="Partagez l'article intitulé '{{article.title}}' sur Linkedin." href="{{ path('article', {id: article.id}) }}"> <h4> {{ article.title }} </h4></a>
+                                <p class="text-grey"> {{ article.chapo }} </p>
+                                <span class="share-separator"></span>
+                                <span class="share-article text-grey fst-italic very-small-font"> Partager l'article : </span>
+                                <ul>
+                                    <i style="color:#1DA1F2;" class="fa-brands fa-twitter"></i>
+                                    <i style="color:#1DA1F2;" class="px-2 fa-brands fa-linkedin"></i>
+                                    <i style="color:#3b5998;" class="fa-brands fa-facebook"></i>
+                                </ul>
+                            </div>
+                        </article>
+
+                        {% if loop.last == false %}
+                            <div class="separator mt-5" style="height:2px; background:rgba(255,255,255, 0.05)"> </div>
+
+                        {% endif %}
+
+                    {% endfor %}
+
+                {% endif %}
 
             </div>
 
@@ -78,6 +86,7 @@
                     {{ knp_pagination_render(listArticles) }}
                 </div>  
 
+                {{ render(controller('App\\Controller\\ThemesController::index')) }}
 
                 <div class="row mx-auto px-5 pt-5 mb-5" id="newsletter">
 
